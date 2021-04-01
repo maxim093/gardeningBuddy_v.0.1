@@ -29,22 +29,40 @@ export default {
   font-size: $font-size-01;
   font-weight: 600;
   cursor: pointer;
+  transition: all ease-in 0.15s;
 
   &--green {
     background-color: darkslategray;
     border: 4px solid palegreen;
     color: white;
+
+    &:hover {
+      background-color: palegreen;
+      color: black;
+    }
   }
 
   &--pink {
     background-color: palevioletred;
     border: 4px solid peachpuff;
     color: white;
+
+    &:hover {
+      background-color: peachpuff;
+      border: 4px solid palevioletred;
+      color: black;
+    }
   }
   &--white {
     background-color: white;
     border: 4px solid black;
     color: black;
+
+    &:hover {
+      background-color: black;
+      border: 4px solid palegreen;
+      color: white;
+    }
   }
 }
 </style>
