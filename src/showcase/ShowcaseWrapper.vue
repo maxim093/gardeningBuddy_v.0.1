@@ -10,5 +10,6 @@
   justify-content: space-around;
   align-items: center;
   margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 </style>
