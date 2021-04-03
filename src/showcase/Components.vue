@@ -42,6 +42,15 @@
     <Icon name="sunny-outline" size="small" color="Icon--pink" />
     <Icon name="rainy-outline" size="large" />
   </ShowcaseWrapper>
+
+  <ShowcaseWrapper>
+    <Headline tag="h1">Headline h1</Headline>
+    <Headline styling="h2">Headline h2</Headline>
+    <Headline styling="h3">Headline h3</Headline>
+    <Headline styling="h4">Headline h4</Headline>
+    <Headline tag="h1" styling="h4">Headline h5</Headline>
+    <Headline>Headline h6</Headline>
+  </ShowcaseWrapper>
 </template>
 
 <script>
@@ -51,6 +60,7 @@ import Spinner from "../components/atoms/Spinner";
 import Image from "../components/atoms/Image";
 import Icon from "../components/atoms/Icon";
 import ShowcaseWrapper from "./ShowcaseWrapper";
+import Headline from "../components/atoms/Headline";
 
 export default {
   components: {
@@ -60,6 +70,7 @@ export default {
     Image,
     ShowcaseWrapper,
     Icon,
+    Headline,
   },
 };
 </script>
