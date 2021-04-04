@@ -174,10 +174,10 @@
   top: -15px;
   left: 11px;
   box-sizing: border-box;
-  animation: animloader6 1s ease infinite;
+  animation: animloader5 1s ease infinite;
 }
 
-@keyframes animloader6 {
+@keyframes animloader5 {
   0% {
     box-shadow: 2px 0px palevioletred, 12px 0px palegreen, 20px 0px palevioletred;
   }

@@ -23,7 +23,7 @@ export default {
   computed: {
     setColor() {
       if (this.color) {
-        return this.color;
+        return `Icon  ${this.color}`;
       } else {
         return "Icon";
       }
@@ -44,6 +44,10 @@ export default {
 
   &--white {
     color: white;
+  }
+
+  &--black {
+    color: black;
   }
 }
 </style>

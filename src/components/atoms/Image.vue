@@ -9,7 +9,7 @@ export default {
   props: {
     src: {
       type: String,
-      default: require("@/assets/logo.png"),
+      default: null,
     },
     variant: {
       type: String,
