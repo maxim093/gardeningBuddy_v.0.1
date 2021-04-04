@@ -94,6 +94,7 @@ export default {
       & .Icon {
         transform: scale(1.2);
         padding-right: 10px;
+        color: gold;
       }
     }
 
@@ -130,6 +131,18 @@ export default {
       align-items: center;
       position: relative;
       padding-top: 20px;
+      background: white;
+      transition: all ease-out 0.3s;
+
+      &:hover {
+        background: palevioletred;
+        color: #fff;
+        cursor: pointer;
+
+        & .Link {
+          color: #fff;
+        }
+      }
 
       &-curIcon {
         transform: scale(1.2);
