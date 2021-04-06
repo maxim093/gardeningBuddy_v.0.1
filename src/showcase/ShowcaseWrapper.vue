@@ -7,7 +7,9 @@
 <style lang="scss" scoped>
 .Showcase-Wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
 }
 </style>
