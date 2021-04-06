@@ -1,45 +1,74 @@
 <template>
   <div class="Weather-wrapper">
-    <div class="Weather-today">
-      <div class="Weather-today--temperature">
-        <Icon name="sunny-outline" size="large" color="Icon--white" />
-        <span>22 &#176;</span>
-      </div>
-      <div class="Weather-today--date">
-        <span>Montag,</span>
-        <span>20.06.20</span>
-      </div>
-      <Link to="#" class="Weather-today--all Link--white">Ganzer Tag <Icon name="chevron-forward-outline"/></Link>
-    </div>
-    <div class="Weather-future">
-      <div class="Weather-future--dayEntry">
+    <div class="Weather--dayEntry active" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+      <div class="dayEntry--date">
         <span>Di,</span>
         <span>21.06.20</span>
-        <Icon name="sunny-outline" class="Weather-future--dayEntry-curIcon" size="large" color="Icon--black" />
-        <span>23 &#176;</span>
-        <Link to="/" class="Link--black">Mehr <Icon name="chevron-forward-outline"/></Link>
       </div>
-      <div class="Weather-future--dayEntry">
-        <span>Mi,</span>
-        <span>22.06.20</span>
-        <Icon name="sunny-outline" class="Weather-future--dayEntry-curIcon" size="large" color="Icon--black" />
+      <div class="dayEntry--temp">
+        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
-        <Link to="/" class="Link--black">Mehr <Icon name="chevron-forward-outline"/></Link>
       </div>
-      <div class="Weather-future--dayEntry">
-        <span>Do,</span>
-        <span>23 &#176;.06.20</span>
-        <Icon name="sunny-outline" class="Weather-future--dayEntry-curIcon" size="large" color="Icon--black" />
+      <Link to="/" class="Link--black dayEntry--more">
+        Mehr
+        <Icon name="chevron-forward-outline" />
+      </Link>
+    </div>
+    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+      <div class="dayEntry--date">
+        <span>Di,</span>
+        <span>21.06.20</span>
+      </div>
+      <div class="dayEntry--temp">
+        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
-        <Link to="/" class="Link--black">Mehr <Icon name="chevron-forward-outline"/></Link>
       </div>
-      <div class="Weather-future--dayEntry">
-        <span>Fr,</span>
-        <span>24.06.20</span>
-        <Icon name="sunny-outline" class="Weather-future--dayEntry-curIcon" size="large" color="Icon--black" />
+      <Link to="/" class="Link--black dayEntry--more">
+        Mehr
+        <Icon name="chevron-forward-outline" />
+      </Link>
+    </div>
+    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+      <div class="dayEntry--date">
+        <span>Di,</span>
+        <span>21.06.20</span>
+      </div>
+      <div class="dayEntry--temp">
+        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
-        <Link to="/" class="Link--black">Mehr <Icon name="chevron-forward-outline"/></Link>
       </div>
+      <Link to="/" class="Link--black dayEntry--more">
+        Mehr
+        <Icon name="chevron-forward-outline" />
+      </Link>
+    </div>
+    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+      <div class="dayEntry--date">
+        <span>Di,</span>
+        <span>21.06.20</span>
+      </div>
+      <div class="dayEntry--temp">
+        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <span>23 &#176;</span>
+      </div>
+      <Link to="/" class="Link--black dayEntry--more">
+        Mehr
+        <Icon name="chevron-forward-outline" />
+      </Link>
+    </div>
+    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+      <div class="dayEntry--date">
+        <span>Di,</span>
+        <span>21.06.20</span>
+      </div>
+      <div class="dayEntry--temp">
+        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <span>23 &#176;</span>
+      </div>
+      <Link to="/" class="Link--black dayEntry--more">
+        Mehr
+        <Icon name="chevron-forward-outline" />
+      </Link>
     </div>
   </div>
 </template>
@@ -53,6 +82,25 @@ export default {
     Icon,
     Link,
   },
+  data() {
+    return {
+      hover: false,
+    };
+  },
+  methods: {
+    setActive($event, status) {
+      const nodeItems = Array.from(document.getElementsByClassName("Weather--dayEntry"));
+      nodeItems[0].style.pointerEvents = "none";
+
+      if (status) {
+        nodeItems[0].classList.remove("active");
+        $event.target.classList.add("active");
+      } else {
+        $event.target.classList.remove("active");
+        nodeItems[0].classList.add("active");
+      }
+    },
+  },
 };
 </script>
 
@@ -62,104 +110,108 @@ export default {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
     background-color: transparent;
     border-radius: 10px;
-    display: flex;
     max-width: 100%;
     margin: 20px;
     overflow: hidden;
     width: 800px;
     height: 200px;
     display: grid;
-    grid-template-areas: "today future future";
-    grid-template-columns: 0.9fr 2.1fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 
-  &-today {
-    grid-area: today;
-    background-color: palevioletred;
-    color: #fff;
-    display: grid;
-    grid-template-areas:
-      "temp date"
-      "all all";
-    grid-template-rows: auto;
+  &--dayEntry {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     position: relative;
-    padding: 20px;
-    text-align: start;
+    padding-top: 20px;
+    background-color: white;
+    width: 137px;
+    transition: background-color ease-out 0.3s;
+    transition: width ease-out 0.15s;
 
-    &--temperature {
-      grid-area: temp;
+    .dayEntry--temp {
       display: flex;
+      flex-direction: column;
 
-      & .Icon {
-        transform: scale(1.2);
-        padding-right: 10px;
-        color: gold;
+      span {
+        position: absolute;
+        bottom: 50px;
+      }
+
+      > * {
+        margin-bottom: 5px;
       }
     }
-
-    &--date {
-      grid-area: date;
-      text-align: end;
+    .dayEntry--date {
       display: flex;
       flex-direction: column;
     }
 
-    &--all {
-      grid-area: all;
-      align-self: flex-end;
-      align-items: center;
+    &-curIcon {
+      transform: scale(1.2);
+      padding: 10px 0;
+      color: gold;
+    }
+
+    .Link {
       display: flex;
+      align-self: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 20px;
 
       & .Icon {
         transform: scale(0.8);
       }
     }
-  }
 
-  &-future {
-    grid-area: future;
-    background-color: #fff;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    &.active {
+      display: grid;
+      grid-template-areas:
+        "temp date"
+        "more date";
+      justify-content: initial;
+      width: 240px;
+      background-color: palevioletred;
+      color: #fff;
+      cursor: pointer;
 
-    &--dayEntry {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      position: relative;
-      padding-top: 20px;
-      background: white;
-      transition: all ease-out 0.3s;
-
-      &:hover {
-        background: palevioletred;
+      & .Link {
         color: #fff;
-        cursor: pointer;
+      }
 
-        & .Link {
-          color: #fff;
+      .dayEntry--date {
+        grid-area: date;
+        align-self: start;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding-right: 20px;
+        padding-top: 15px;
+      }
+      .dayEntry--temp {
+        grid-area: temp;
+        flex-direction: row;
+        align-items: center;
+        padding-left: 20px;
+        justify-content: flex-start;
+        align-self: start;
+
+        span {
+          position: absolute;
+          bottom: initial;
+          left: 65px;
         }
-      }
-
-      &-curIcon {
-        transform: scale(1.2);
-        padding: 10px 0;
-        color: gold;
-      }
-
-      .Link {
-        display: flex;
-        align-self: center;
-        justify-content: center;
-        position: absolute;
-        bottom: 20px;
 
         & .Icon {
-          transform: scale(0.8);
+          transform: scale(1.5);
+          padding-right: 10px;
         }
+      }
+      .dayEntry--more {
+        grid-area: more;
+        padding-left: 20px;
       }
     }
   }
