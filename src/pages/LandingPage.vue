@@ -1,0 +1,99 @@
+<template>
+  <Header />
+  <div class="LandingPage">
+    <img :src="blob" alt="" class="LandingPage-blob" />
+    <img :src="womenGarden" alt="" class="LandingPage-background" />
+    <div class="LandingPage-Info">
+      <div>
+        <Headline tag="h1" class="LandingPage-Info-headline">Kein Bock auf Tagebuch?</Headline>
+        <div class="LandingPage-Info-subline">
+          <Headline tag="h2">Mit dem Gardenbuddy alles online manangen!</Headline>
+          <Headline tag="h2">Super easy und super schnell!</Headline>
+          <Button class="Btn--green">Jetzt starten</Button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Footer"></div>
+</template>
+
+<script>
+import Header from "../components/layout/Header";
+import wave from "../assets/wave1.svg";
+import blob from "../assets/blob10.svg";
+import womenGarden from "../assets/landing2.svg";
+import Headline from "../components/atoms/Headline";
+import Button from "../components/atoms/Button";
+
+export default {
+  data() {
+    return {
+      wave,
+      blob,
+      womenGarden,
+    };
+  },
+  components: {
+    Header,
+    Headline,
+    Button,
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.LandingPage {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: url("../assets/wave8.svg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-position: bottom;
+
+  &-background {
+    position: absolute;
+    width: 600px;
+    left: 30px;
+    top: 150px;
+  }
+
+  &-blob {
+    position: absolute;
+    width: 700px;
+    top: 30px;
+    left: 100px;
+  }
+
+  &-Info {
+    grid-column: 2 / 2;
+    align-items: center;
+    margin-top: 130px;
+
+    &-headline {
+      font-size: 56px;
+      text-align: left;
+    }
+
+    &-subline {
+      text-align: left;
+
+      h2 {
+        font-weight: 300;
+        line-height: 20px;
+        font-size: 30px;
+      }
+    }
+
+    .Btn {
+      margin-top: 30px;
+      font-size: 20px;
+    }
+  }
+}
+
+.Footer {
+  background: #52b788;
+  height: 500px;
+  margin-top: -5px;
+}
+</style>
