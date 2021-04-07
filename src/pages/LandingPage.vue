@@ -45,22 +45,36 @@ export default {
 .LandingPage {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background: url("../assets/wave8.svg");
+  background-image: url("../assets/wave8.svg");
   background-repeat: no-repeat;
   height: 100vh;
   background-position: bottom;
+  position: relative;
+
+  &::after {
+    content: "";
+    background-image: url("../assets/wave8.svg");
+    background-repeat: no-repeat;
+    width: 1900px;
+    height: 100%;
+    position: absolute;
+    right: -650px;
+    top: -1000px;
+    transform: rotateZ(220deg);
+    z-index: 3;
+  }
 
   &-background {
     position: absolute;
-    width: 600px;
-    left: 30px;
-    top: 150px;
+    width: 650px;
+    left: 70px;
+    top: 20px;
   }
 
   &-blob {
     position: absolute;
-    width: 700px;
-    top: 30px;
+    width: 800px;
+    top: -100px;
     left: 100px;
   }
 

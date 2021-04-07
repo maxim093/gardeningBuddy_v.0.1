@@ -23,6 +23,8 @@ export default {
 .Header {
   display: grid;
   grid-template-columns: 1fr 3fr;
+  position: relative;
+  z-index: 5;
 
   &-Logo {
     width: 30%;
