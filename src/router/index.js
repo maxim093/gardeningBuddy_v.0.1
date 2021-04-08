@@ -1,15 +1,15 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Home from "../pages/Home.vue";
 import LandingPage from "../pages/LandingPage.vue";
+import Register from "../pages/Register.vue";
+import News from "../pages/News.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    redirect: "/Landingpage",
   },
   {
-    path: "/about",
+    path: "/components",
     name: "About",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -20,6 +20,16 @@ const routes = [
     path: "/Landingpage",
     name: "LandingPage",
     component: LandingPage,
+  },
+  {
+    path: "/Register",
+    name: "Register",
+    component: Register,
+  },
+  {
+    path: "/News",
+    name: "News",
+    component: News,
   },
 ];
 

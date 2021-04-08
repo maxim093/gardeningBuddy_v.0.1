@@ -14,14 +14,16 @@
       </div>
     </div>
   </div>
-  <div class="Footer"></div>
+  <div class="Footer">
+    <a href="https://www.freepik.com/vectors/woman">Woman vector created by freepik - www.freepik.com</a>
+  </div>
 </template>
 
 <script>
 import Header from "../components/layout/Header";
 import wave from "../assets/wave1.svg";
 import blob from "../assets/blob10.svg";
-import womenGarden from "../assets/landing2.svg";
+import womenGarden from "../assets/womenGardening.svg";
 import Headline from "../components/atoms/Headline";
 import Button from "../components/atoms/Button";
 
@@ -68,7 +70,7 @@ export default {
     position: absolute;
     width: 650px;
     left: 70px;
-    top: 20px;
+    top: 0;
   }
 
   &-blob {
@@ -82,6 +84,8 @@ export default {
     grid-column: 2 / 2;
     align-items: center;
     margin-top: 130px;
+    margin-top: 130px;
+    z-index: 10;
 
     &-headline {
       font-size: 56px;

@@ -17,7 +17,6 @@
     text-transform: uppercase;
     font-size: 36px;
     font-weight: bold;
-    position: fixed;
     width: 100%;
     bottom: 45%;
     display: block;

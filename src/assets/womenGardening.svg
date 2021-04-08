@@ -81,7 +81,7 @@
        id="g12"
        transform="scale(0.1)"><path
          d="M 0,0 H 5000 V 5000 H 0 Z"
-         style="fill:#f3e8cf;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         style="fill:transparent;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="path14" /><g
          id="g16"><g
            id="g18"

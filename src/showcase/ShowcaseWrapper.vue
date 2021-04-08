@@ -11,5 +11,9 @@
   align-items: center;
   margin-bottom: 30px;
   flex-wrap: wrap;
+
+  &.spacer {
+    margin-bottom: 300px;
+  }
 }
 </style>

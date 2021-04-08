@@ -2,10 +2,10 @@
   <div class="Header">
     <Logo class="Header-Logo" />
     <ul class="Header-Nav">
-      <li class="Header-Nav-Entry">Warum Gardenbuddy?</li>
-      <li class="Header-Nav-Entry">News</li>
-      <li class="Header-Nav-Entry">Registrieren</li>
-      <li class="Header-Nav-Entry Login">Einloggen</li>
+      <router-link to="/Landingpage" class="Header-Nav-Entry">Warum Gardenbuddy?</router-link>
+      <router-link to="/News" class="Header-Nav-Entry">News</router-link>
+      <router-link to="/Register" class="Header-Nav-Entry">Registrieren</router-link>
+      <router-link to="/Login" class="Header-Nav-Entry Login">Einloggen</router-link>
     </ul>
   </div>
 </template>
@@ -43,6 +43,7 @@ export default {
       font-size: 18px;
       cursor: pointer;
       position: relative;
+      text-decoration: none;
 
       &:hover:not(:last-child):after {
         content: "";
@@ -59,7 +60,7 @@ export default {
         padding: 10px 20px;
         position: relative;
         z-index: 1;
-        background: linear-gradient(to left, white 50%, #52b788 50%) right;
+        background: linear-gradient(to left, white 50%, darkslategrey 50%) right;
         background-size: 200%;
         transition: 0.2s ease-out;
 
