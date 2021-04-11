@@ -7,6 +7,7 @@
     <NewsCard />
     <NewsCard />
     <NewsCard />
+    <NewsCard />
   </div>
 </template>
 
@@ -29,5 +30,8 @@ export default {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
   align-items: center;
+  background-image: url("../assets/wave5.svg");
+  background-repeat: no-repeat;
+  background-position: bottom right;
 }
 </style>
