@@ -45,6 +45,7 @@ export default {
 
   &-Wrapper {
     position: relative;
+    display: flex;
   }
 
   &:hover {

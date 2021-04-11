@@ -46,7 +46,7 @@
     <Headline>Headline h6</Headline>
   </ShowcaseWrapper>
 
-  <ShowcaseWrapper>
+  <ShowcaseWrapper class="spacer">
     <Headline styling="h2">Logo</Headline>
     <Logo />
   </ShowcaseWrapper>
