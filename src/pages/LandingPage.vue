@@ -52,6 +52,7 @@ export default {
   height: 100vh;
   background-position: bottom;
   position: relative;
+  z-index: 1;
 
   &::after {
     content: "";

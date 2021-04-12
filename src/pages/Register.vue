@@ -1,7 +1,12 @@
 <template>
   <Header />
   <div class="Register">
-    <ClassicForm />
+    <ClassicForm>
+      <template v-slot:header>
+        Jetzt nur noch schnell <span>Registrieren</span><br />
+        und dann kanns losgehen! 😍
+      </template>
+    </ClassicForm>
     <img :src="Background" alt="" class="Register-background" />
   </div>
 </template>

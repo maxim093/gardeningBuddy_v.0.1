@@ -5,16 +5,46 @@
       <router-link to="/Landingpage" class="Header-Nav-Entry">Warum Gardenbuddy?</router-link>
       <router-link to="/News" class="Header-Nav-Entry">News</router-link>
       <router-link to="/Register" class="Header-Nav-Entry">Registrieren</router-link>
-      <router-link to="/Login" class="Header-Nav-Entry Login">Einloggen</router-link>
+      <button @click="showModal" class="Header-Nav-Entry Login">Einloggen</button>
     </ul>
+    <Modal v-show="isModalVisible" @close="closeModal">
+      <template v-slot:header>
+        <Headline></Headline>
+        User Login
+      </template>
+
+      <template v-slot:body> </template>
+
+      <template v-slot:footer>
+        This is a new modal footer.
+      </template>
+    </Modal>
   </div>
 </template>
 
 <script>
 import Logo from "../atoms/Logo";
+import Modal from "../molecules/Modal";
+import Headline from "../atoms/Headline";
+
 export default {
   components: {
     Logo,
+    Modal,
+    Headline,
+  },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
   },
 };
 </script>

@@ -1,8 +1,7 @@
 <template>
   <div class="ClassicForm">
-    <Headline tag="h1" styling="h2"
-      >Jetzt nur noch schnell <span>Registrieren</span><br />
-      und dann kanns losgehen! 😍
+    <Headline tag="h1" styling="h2">
+      <slot name="header"></slot>
     </Headline>
     <InputField variant="Input--pink" type="email">Email</InputField>
     <InputField variant="Input--pink" type="password">Password</InputField>
@@ -33,7 +32,7 @@ export default {
   width: 30%;
   margin: 100px auto;
   padding: 50px 0;
-  z-index: 10;
+  z-index: 4;
   position: relative;
   background: #fff;
 
