@@ -1,20 +1,20 @@
 <template>
-  <Header />
+  <the-header />
   <div class="Register">
-    <ClassicForm>
+    <classic-form>
       <template v-slot:header>
         Jetzt nur noch schnell <span>Registrieren</span><br />
         und dann kanns losgehen! 😍
       </template>
-    </ClassicForm>
+    </classic-form>
     <img :src="Background" alt="" class="Register-background" />
   </div>
 </template>
 
 <script>
-import Header from "../components/layout/Header";
 import ClassicForm from "../components/molecules/ClassicForm";
 import Background from "../assets/blob1.svg";
+import TheHeader from "../components/layout/TheHeader.vue";
 
 export default {
   data() {
@@ -23,8 +23,8 @@ export default {
     };
   },
   components: {
-    Header,
     ClassicForm,
+    TheHeader,
   },
 };
 </script>

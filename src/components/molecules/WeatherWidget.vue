@@ -6,13 +6,13 @@
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
-        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <Link to="/" class="Link--black dayEntry--more">
+      <base-link to="/" class="Link--black dayEntry--more">
         Mehr
-        <Icon name="chevron-forward-outline" />
-      </Link>
+        <base-icon name="chevron-forward-outline" />
+      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
@@ -20,13 +20,13 @@
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
-        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <Link to="/" class="Link--black dayEntry--more">
+      <base-link to="/" class="Link--black dayEntry--more">
         Mehr
-        <Icon name="chevron-forward-outline" />
-      </Link>
+        <base-icon name="chevron-forward-outline" />
+      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
@@ -34,13 +34,13 @@
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
-        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <Link to="/" class="Link--black dayEntry--more">
+      <base-link to="/" class="Link--black dayEntry--more">
         Mehr
-        <Icon name="chevron-forward-outline" />
-      </Link>
+        <base-icon name="chevron-forward-outline" />
+      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
@@ -48,13 +48,13 @@
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
-        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <Link to="/" class="Link--black dayEntry--more">
+      <base-link to="/" class="Link--black dayEntry--more">
         Mehr
-        <Icon name="chevron-forward-outline" />
-      </Link>
+        <base-icon name="chevron-forward-outline" />
+      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
@@ -62,25 +62,26 @@
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
-        <Icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
+        <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <Link to="/" class="Link--black dayEntry--more">
+      <base-link to="/" class="Link--black dayEntry--more">
         Mehr
-        <Icon name="chevron-forward-outline" />
-      </Link>
+        <base-icon name="chevron-forward-outline" />
+      </base-link>
     </div>
   </div>
 </template>
 
 <script>
-import Icon from "../atoms/Icon";
-import Link from "../atoms/Link";
+import BaseIcon from "../atoms/BaseIcon";
+import BaseLink from "../atoms/BaseLink";
 
 export default {
+  name: "WeatherWidget",
   components: {
-    Icon,
-    Link,
+    BaseIcon,
+    BaseLink,
   },
   data() {
     return {

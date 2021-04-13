@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: "BaseImage",
   props: {
     src: {
       type: String,

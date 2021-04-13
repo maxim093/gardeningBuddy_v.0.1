@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: "Modal",
+  name: "ClassicModal",
   methods: {
     close() {
       this.$emit("close");

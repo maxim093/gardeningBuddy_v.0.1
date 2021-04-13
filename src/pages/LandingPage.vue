@@ -1,15 +1,15 @@
 <template>
-  <Header />
+  <the-header />
   <div class="LandingPage">
     <img :src="blob" alt="" class="LandingPage-blob" />
     <img :src="womenGarden" alt="" class="LandingPage-background" />
     <div class="LandingPage-Info">
       <div>
-        <Headline tag="h1" class="LandingPage-Info-headline">Kein Bock auf Tagebuch?</Headline>
+        <base-headline tag="h1" class="LandingPage-Info-headline">Kein Bock auf Tagebuch?</base-headline>
         <div class="LandingPage-Info-subline">
-          <Headline tag="h2">Mit dem Gardenbuddy alles online manangen!</Headline>
-          <Headline tag="h2">Super easy und super schnell!</Headline>
-          <Button class="Btn--green">Jetzt starten</Button>
+          <base-headline tag="h2">Mit dem Gardenbuddy alles online manangen!</base-headline>
+          <base-headline tag="h2">Super easy und super schnell!</base-headline>
+          <base-button class="Btn--green">Jetzt starten</base-button>
         </div>
       </div>
     </div>
@@ -20,12 +20,12 @@
 </template>
 
 <script>
-import Header from "../components/layout/Header";
+import TheHeader from "../components/layout/TheHeader";
 import wave from "../assets/wave1.svg";
 import blob from "../assets/blob10.svg";
 import womenGarden from "../assets/womenGardening.svg";
-import Headline from "../components/atoms/Headline";
-import Button from "../components/atoms/Button";
+import BaseHeadline from "../components/atoms/BaseHeadline";
+import BaseButton from "../components/atoms/BaseButton";
 
 export default {
   data() {
@@ -36,9 +36,9 @@ export default {
     };
   },
   components: {
-    Header,
-    Headline,
-    Button,
+    TheHeader,
+    BaseHeadline,
+    BaseButton,
   },
 };
 </script>

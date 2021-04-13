@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: "BaseInputField",
   props: {
     type: {
       type: String,

@@ -5,6 +5,7 @@
 
 <script>
 export default {
+  name: "BaseHeadline",
   props: {
     tag: {
       type: String,

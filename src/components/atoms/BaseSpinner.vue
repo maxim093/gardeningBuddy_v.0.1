@@ -2,6 +2,12 @@
   <span> <slot /></span>
 </template>
 
+<script>
+export default {
+  name: "BaseSpinner",
+};
+</script>
+
 <style scoped>
 .loader {
   width: 48px;

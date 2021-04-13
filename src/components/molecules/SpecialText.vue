@@ -10,6 +10,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: "SpecialText",
+};
+</script>
+
 <style lang="scss" scoped>
 .SpecialText {
   &-wrapper {

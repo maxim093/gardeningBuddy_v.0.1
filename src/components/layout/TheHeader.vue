@@ -1,16 +1,17 @@
 <template>
   <div class="Header">
-    <Logo class="Header-Logo" />
+    <base-logo class="Header-Logo" />
     <ul class="Header-Nav">
       <router-link to="/Landingpage" class="Header-Nav-Entry">Warum Gardenbuddy?</router-link>
       <router-link to="/News" class="Header-Nav-Entry">News</router-link>
       <router-link to="/Register" class="Header-Nav-Entry">Registrieren</router-link>
       <button @click="showModal" class="Header-Nav-Entry Login">Einloggen</button>
     </ul>
-    <Modal v-show="isModalVisible" @close="closeModal">
+    <classic-modal v-show="isModalVisible" @close="closeModal">
       <template v-slot:header>
-        <Headline></Headline>
-        User Login
+        <base-headline>
+          User Login
+        </base-headline>
       </template>
 
       <template v-slot:body> </template>
@@ -18,20 +19,21 @@
       <template v-slot:footer>
         This is a new modal footer.
       </template>
-    </Modal>
+    </classic-modal>
   </div>
 </template>
 
 <script>
-import Logo from "../atoms/Logo";
-import Modal from "../molecules/Modal";
-import Headline from "../atoms/Headline";
+import BaseLogo from "../atoms/BaseLogo";
+import ClassicModal from "../molecules/ClassicModal";
+import BaseHeadline from "../atoms/BaseHeadline";
 
 export default {
+  name: "TheHeader",
   components: {
-    Logo,
-    Modal,
-    Headline,
+    BaseLogo,
+    ClassicModal,
+    BaseHeadline,
   },
   data() {
     return {

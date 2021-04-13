@@ -1,23 +1,24 @@
 <template>
   <div class="ClassicForm">
-    <Headline tag="h1" styling="h2">
+    <base-headline tag="h1" styling="h2">
       <slot name="header"></slot>
-    </Headline>
-    <InputField variant="Input--pink" type="email">Email</InputField>
-    <InputField variant="Input--pink" type="password">Password</InputField>
-    <InputField variant="Input--pink" type="password">Password</InputField>
-    <Button class="Btn--green">Registrieren</Button>
+    </base-headline>
+    <base-input-field variant="Input--pink" type="email">Email</base-input-field>
+    <base-input-field variant="Input--pink" type="password">Password</base-input-field>
+    <base-input-field variant="Input--pink" type="password">Password</base-input-field>
+    <base-button class="Btn--green">Registrieren</base-button>
   </div>
 </template>
 <script>
-import InputField from "../atoms/InputField";
-import Button from "../atoms/Button";
-import Headline from "../atoms/Headline";
+import BaseInputField from "../atoms/BaseInputField";
+import BaseButton from "../atoms/BaseButton";
+import BaseHeadline from "../atoms/BaseHeadline";
 export default {
+  name: "ClassicForm",
   components: {
-    InputField,
-    Button,
-    Headline,
+    BaseInputField,
+    BaseButton,
+    BaseHeadline,
   },
 };
 </script>
