@@ -1,21 +1,20 @@
 <template>
   <div class="about">
     <Components />
-    <SpecialText />
-    <Weather />
+    <special-text />
+    <weather-widget />
   </div>
 </template>
 
 <script>
-import Weather from "../components/molecules/Weather";
+import WeatherWidget from "../components/molecules/WeatherWidget";
 import SpecialText from "../components/molecules/SpecialText";
 import Components from "../showcase/Components";
 
 export default {
   components: {
-    Weather,
+    WeatherWidget,
     SpecialText,
-
     Components,
   },
 };

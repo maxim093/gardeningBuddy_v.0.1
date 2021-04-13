@@ -5,6 +5,7 @@
 
 <script>
 export default {
+  name: "BaseButton",
   props: {
     href: {
       type: String,

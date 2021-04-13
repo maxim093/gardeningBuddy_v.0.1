@@ -1,23 +1,23 @@
 <template>
-  <Header />
+  <the-header />
   <div class="News">
-    <NewsCard />
-    <NewsCard />
-    <NewsCard />
-    <NewsCard />
-    <NewsCard />
-    <NewsCard />
-    <NewsCard />
+    <news-card />
+    <news-card />
+    <news-card />
+    <news-card />
+    <news-card />
+    <news-card />
+    <news-card />
   </div>
 </template>
 
 <script>
-import Header from "../components/layout/Header";
+import TheHeader from "../components/layout/TheHeader.vue";
 import NewsCard from "../components/molecules/NewsCard.vue";
 
 export default {
   components: {
-    Header,
+    TheHeader,
     NewsCard,
   },
 };

@@ -12,7 +12,9 @@
 </template>
 dominik
 <script>
-export default {};
+export default {
+  name: "NewsCard",
+};
 </script>
 
 <style lang="scss" scoped>

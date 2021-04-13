@@ -1,77 +1,77 @@
 <template>
   <ShowcaseWrapper>
-    <Headline styling="h2">Button</Headline>
-    <Button href="https://www.google.de/" class="Btn--green">Klick mich</Button>
-    <Button class="Btn--pink">Klick mich</Button>
-    <Button class="Btn--white">Klick mich</Button>
+    <base-headline styling="h2">Button</base-headline>
+    <base-button href="https://www.google.de/" class="Btn--green">Klick mich</base-button>
+    <base-button class="Btn--pink">Klick mich</base-button>
+    <base-button class="Btn--white">Klick mich</base-button>
   </ShowcaseWrapper>
 
   <ShowcaseWrapper>
-    <Headline styling="h2">InputField</Headline>
-    <InputField variant="Input--pink">Name</InputField>
-    <InputField variant="Input--green" type="email">Email</InputField>
-    <InputField variant="Input--black" type="password">Password</InputField>
+    <base-headline styling="h2">InputField</base-headline>
+    <base-input-field variant="Input--pink">Name</base-input-field>
+    <base-input-field variant="Input--green" type="email">Email</base-input-field>
+    <base-input-field variant="Input--black" type="password">Password</base-input-field>
   </ShowcaseWrapper>
 
   <ShowcaseWrapper>
-    <Headline styling="h2">Spinner</Headline>
-    <Spinner class="loader" />
-    <Spinner class="loader2" />
-    <Spinner class="loader3" />
-    <Spinner class="loader4" />
-    <Spinner class="loader5" />
+    <base-headline styling="h2">Spinner</base-headline>
+    <base-spinner class="loader" />
+    <base-spinner class="loader2" />
+    <base-spinner class="loader3" />
+    <base-spinner class="loader4" />
+    <base-spinner class="loader5" />
   </ShowcaseWrapper>
 
   <ShowcaseWrapper>
-    <Headline styling="h2">Image</Headline>
-    <Image variant="circular--landscape" :src="require('@/assets/basilikum.jpg')" />
-    <Image variant="circular--portrait" :src="require('@/assets/rosmarin.jpg')" />
-    <Image variant="circular--portrait" :src="require('@/assets/tomate.jpg')" />
-    <Image :src="require('@/assets/tomate.jpg')" size="Image--small" />
+    <base-headline styling="h2">Image</base-headline>
+    <base-image variant="circular--landscape" :src="require('@/assets/basilikum.jpg')" />
+    <base-image variant="circular--portrait" :src="require('@/assets/rosmarin.jpg')" />
+    <base-image variant="circular--portrait" :src="require('@/assets/tomate.jpg')" />
+    <base-image :src="require('@/assets/tomate.jpg')" size="Image--small" />
   </ShowcaseWrapper>
 
   <ShowcaseWrapper>
-    <Headline styling="h2">Icon</Headline>
-    <Icon name="heart" size="large" />
-    <Icon name="sunny-outline" size="small" color="Icon--pink" />
-    <Icon name="rainy-outline" size="large" />
+    <base-headline styling="h2">Icon</base-headline>
+    <base-icon name="heart" size="large" />
+    <base-icon name="sunny-outline" size="small" color="Icon--pink" />
+    <base-icon name="rainy-outline" size="large" />
   </ShowcaseWrapper>
 
   <ShowcaseWrapper>
-    <Headline tag="h1">Headline h1</Headline>
-    <Headline styling="h2">Headline h2</Headline>
-    <Headline styling="h3">Headline h3</Headline>
-    <Headline styling="h4">Headline h4</Headline>
-    <Headline tag="h1" styling="h4">Headline h5</Headline>
-    <Headline>Headline h6</Headline>
+    <base-headline tag="h1">Headline h1</base-headline>
+    <base-headline styling="h2">Headline h2</base-headline>
+    <base-headline styling="h3">Headline h3</base-headline>
+    <base-headline styling="h4">Headline h4</base-headline>
+    <base-headline tag="h1" styling="h4">Headline h5</base-headline>
+    <base-headline>Headline h6</base-headline>
   </ShowcaseWrapper>
 
   <ShowcaseWrapper class="spacer">
-    <Headline styling="h2">Logo</Headline>
-    <Logo />
+    <base-headline styling="h2">Logo</base-headline>
+    <base-logo />
   </ShowcaseWrapper>
 </template>
 
 <script>
-import Button from "../components/atoms/Button";
-import InputField from "../components/atoms/InputField";
-import Spinner from "../components/atoms/Spinner";
-import Image from "../components/atoms/Image";
-import Icon from "../components/atoms/Icon";
+import BaseButton from "../components/atoms/BaseButton";
+import BaseInputField from "../components/atoms/BaseInputField";
+import BaseSpinner from "../components/atoms/BaseSpinner";
+import BaseImage from "../components/atoms/BaseImage";
+import BaseIcon from "../components/atoms/BaseIcon";
 import ShowcaseWrapper from "./ShowcaseWrapper";
-import Logo from "../components/atoms/Logo";
-import Headline from "../components/atoms/Headline";
+import BaseLogo from "../components/atoms/BaseLogo";
+import BaseHeadline from "../components/atoms/BaseHeadline";
 
 export default {
   components: {
-    Button,
-    InputField,
-    Spinner,
-    Image,
+    BaseButton,
+    BaseInputField,
+    BaseSpinner,
+    BaseImage,
     ShowcaseWrapper,
-    Icon,
-    Headline,
-    Logo,
+    BaseIcon,
+    BaseHeadline,
+    BaseLogo,
   },
 };
 </script>
