@@ -4,8 +4,8 @@
       <slot name="header"></slot>
     </base-headline>
     <base-input-field variant="Input--pink" type="email">Email</base-input-field>
-    <base-input-field variant="Input--pink" type="password">Password</base-input-field>
-    <base-input-field variant="Input--pink" type="password">Password</base-input-field>
+    <base-input-field variant="Input--pink" type="password">Passwort</base-input-field>
+    <base-input-field variant="Input--pink" type="password">Passwort wiederholen</base-input-field>
     <base-button class="Btn--green">Registrieren</base-button>
   </div>
 </template>

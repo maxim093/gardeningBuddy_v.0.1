@@ -14,10 +14,13 @@
         </base-headline>
       </template>
 
-      <template v-slot:body> </template>
+      <template v-slot:body>
+        <base-input-field variant="Input--green" type="email">Email</base-input-field>
+        <base-input-field variant="Input--green" type="password">Passwort</base-input-field>
+      </template>
 
       <template v-slot:footer>
-        This is a new modal footer.
+        <base-button class="Btn--green">Login</base-button>
       </template>
     </classic-modal>
   </div>
@@ -27,6 +30,8 @@
 import BaseLogo from "../atoms/BaseLogo";
 import ClassicModal from "../molecules/ClassicModal";
 import BaseHeadline from "../atoms/BaseHeadline";
+import BaseInputField from "../atoms/BaseInputField";
+import BaseButton from "../atoms/BaseButton.vue";
 
 export default {
   name: "TheHeader",
@@ -34,6 +39,8 @@ export default {
     BaseLogo,
     ClassicModal,
     BaseHeadline,
+    BaseInputField,
+    BaseButton,
   },
   data() {
     return {
@@ -112,5 +119,51 @@ export default {
   100% {
     width: 100%;
   }
+}
+
+.Modal-body {
+  & div {
+    width: 80%;
+  }
+
+  div:nth-child(1) {
+    margin: 20px auto;
+    margin-bottom: 40px;
+  }
+
+  div:nth-child(2) {
+    margin: 20px auto;
+  }
+}
+</style>
+
+<style lang="scss">
+.Input-Wrapper {
+  margin: 20px 0;
+
+  & .Input {
+    width: 400px;
+    font-size: 18px;
+    line-height: 45px;
+    height: 45px;
+    font-family: $font-MS;
+  }
+
+  & .Input[type="password"] {
+    font-size: 22px;
+  }
+
+  & .Label {
+    font-size: 18px;
+    top: inherit;
+    font-family: $font-MS;
+    font-weight: 400;
+  }
+}
+
+.Header .Modal {
+  position: absolute;
+  top: 10%;
+  right: 5%;
 }
 </style>

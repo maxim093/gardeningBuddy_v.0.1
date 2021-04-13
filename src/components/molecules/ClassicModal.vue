@@ -12,8 +12,8 @@
         </section>
 
         <footer class="Modal-footer">
-          <slot name="footer">Default footer!</slot>
-          <button type="button" class="btn-green" @click="close" aria-label="Close modal">Close</button>
+          <slot name="footer"></slot>
+          <base-button class="Btn--white" @click="close" aria-label="Close modal">Zurück</base-button>
         </footer>
       </div>
     </div>
@@ -21,8 +21,12 @@
 </template>
 
 <script>
+import BaseButton from "../atoms/BaseButton";
 export default {
   name: "ClassicModal",
+  components: {
+    BaseButton,
+  },
   methods: {
     close() {
       this.$emit("close");
@@ -40,6 +44,7 @@ export default {
   flex-direction: column;
   position: relative;
   border-radius: 8px;
+  width: 400px;
 
   &-backdrop {
     position: fixed;
@@ -55,7 +60,6 @@ export default {
 
   &-header,
   &-footer {
-    padding: 15px;
     display: flex;
   }
 
@@ -63,13 +67,15 @@ export default {
     position: relative;
     border-bottom: 1px solid #eeeeee;
     color: #4aae9b;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 10px;
   }
 
   &-footer {
+    padding: 15px;
     border-top: 1px solid #eeeeee;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
   &-body {
     position: relative;
@@ -88,13 +94,6 @@ export default {
   font-weight: bold;
   color: #4aae9b;
   background: transparent;
-}
-
-.btn-green {
-  color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
-  border-radius: 2px;
 }
 
 .Modal-fade-enter,

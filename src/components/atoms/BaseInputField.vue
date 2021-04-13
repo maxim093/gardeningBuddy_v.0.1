@@ -43,6 +43,7 @@ export default {
   background: rgba(#000, 0.05);
   box-shadow: inset 0 -1px 0 rgba(#000, 0.3);
   border-radius: 3px 3px 0 0;
+  width: 100%;
 
   &-Wrapper {
     position: relative;
