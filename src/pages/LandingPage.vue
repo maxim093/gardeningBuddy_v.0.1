@@ -15,7 +15,9 @@
     </div>
   </div>
   <div class="Footer">
-    <a href="https://www.freepik.com/vectors/woman">Woman vector created by freepik - www.freepik.com</a>
+    <a class="Licence-link" href="https://www.freepik.com/vectors/woman"
+      >Woman vector created by freepik - www.freepik.com</a
+    >
   </div>
 </template>
 
@@ -114,5 +116,15 @@ export default {
   background: #52b788;
   height: 500px;
   margin-top: -5px;
+  position: relative;
+}
+
+.Licence-link {
+  position: absolute;
+  bottom: 5%;
+  z-index: 10;
+  color: white;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>

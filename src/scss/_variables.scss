@@ -4,7 +4,33 @@
 $font-WS: "Work Sans", sans-serif;
 $font-MS: "Montserrat", sans-serif;
 
+// FONT SIZES
 $font-size-01: 14px;
 $font-size-02: 16px;
 $font-size-03: 20px;
 $font-size-04: 24px;
+
+// change space-unit for media queries to change all spacing variables accordingly
+// spacing values
+$space-unit: 1em;
+$spacing-xxs: calc(0.25 * $space-unit); // 4px
+$spacing-xs: calc(0.5 * $space-unit); // 8px
+$spacing-sm: calc(0.75 * $space-unit); // 12px
+$spacing-md: calc(1.25 * $space-unit); // 20px
+$spacing-lg: calc(2 * $space-unit); // 32px
+$spacing-xl: calc(3.25 * $space-unit); // 52px
+$spacing-xxl: calc(5.25 * $space-unit); // 84px
+
+// spacing values FIXED
+$space-unit-fixed: 1rem;
+$spacing-xxs-fixed: calc(0.25 * $space-unit-fixed); // 4px
+$spacing-xs-fixed: calc(0.5 * $space-unit-fixed); // 8px
+$spacing-sm-fixed: calc(0.75 * $space-unit-fixed); // 12px
+$spacing-md-fixed: calc(1.25 * $space-unit-fixed); // 20px
+$spacing-lg-fixed: calc(2 * $space-unit-fixed); // 32px
+$spacing-xl-fixed: calc(3.25 * $space-unit-fixed); // 52px
+$spacing-xxl-fixed: calc(5.25 * $space-unit-fixed); // 84px
+
+// special spacing => calc($spacing-sm * 1.1)
+
+$block-component-padding: $spacing-sm;
