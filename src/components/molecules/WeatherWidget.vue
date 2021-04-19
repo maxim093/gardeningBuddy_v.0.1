@@ -112,7 +112,6 @@ export default {
     background-color: transparent;
     border-radius: 10px;
     max-width: 100%;
-    margin: 20px;
     overflow: hidden;
     width: 800px;
     height: 200px;
