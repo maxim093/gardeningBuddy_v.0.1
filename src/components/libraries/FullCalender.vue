@@ -239,6 +239,10 @@ export default {
   order: 1;
 }
 
+.cv-weekdays {
+  overflow-x: hidden;
+}
+
 .calendar-parent {
   display: flex;
   flex-direction: column;
