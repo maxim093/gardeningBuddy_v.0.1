@@ -9,9 +9,10 @@
       <full-calender></full-calender>
     </section>
     <dashboard-sidebar></dashboard-sidebar>
-    <section class="Dashboard-Tipps"></section>
     <swiper-classic class="Dashboard-Swiper1"></swiper-classic>
     <image-slider class="Dashboard-Swiper2"></image-slider>
+    <section class="Dashboard-Tipps"></section>
+    <section class="Dashboard-Bla"></section>
   </div>
 </template>
 
@@ -39,17 +40,17 @@ export default {
 .Dashboard {
   display: grid;
   grid-template-areas:
-    "Sidebar Header Header Search Tipps"
-    "Sidebar Calender Calender Swiper1 Tipps "
-    "Sidebar Calender Calender Swiper1 Tipps"
-    "Sidebar Weather Weather Swiper2 Tipps"
-    "Sidebar Weather Weather Swiper2 Tipps";
-  grid-gap: 40px;
-  height: 100vh;
+    "Sidebar Header Header Search Weather"
+    "Sidebar Calender Calender Calender Swiper1"
+    "Sidebar Swiper2 Swiper2 Bla Swiper1"
+    "Sidebar Swiper2 Swiper2 Tipps Tipps"
+    "Sidebar Swiper2 Swiper2 Tipps Tipps";
+  grid-gap: 60px;
+  height: 95vh;
   box-sizing: border-box;
   margin: 20px;
-  grid-template-columns: 1.3fr 3fr 2fr 2fr 1fr;
-  grid-template-rows: 1fr 3fr 2fr 2fr 2fr;
+  grid-template-columns: 1.5fr 1fr 1fr 2fr 1fr;
+  grid-template-rows: 1fr 4fr 1fr 1fr 3fr;
 
   & * {
     border-radius: 20px;
@@ -71,10 +72,13 @@ export default {
   }
   &-Calender {
     grid-area: Calender;
+    margin-top: -200px;
   }
   &-Sidebar {
-    background: #52b788;
+    background: #70dbb8;
     color: rgb(46, 46, 46);
+    //color: rgba(255, 255, 255, 0.9);
+
     grid-area: Sidebar;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   }
@@ -82,7 +86,7 @@ export default {
     grid-area: Header;
   }
   &-Tipps {
-    background: purple;
+    background: #70dbb8;
     grid-area: Tipps;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   }
