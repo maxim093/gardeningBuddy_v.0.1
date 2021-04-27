@@ -50,6 +50,15 @@
     <base-headline styling="h2">Logo</base-headline>
     <base-logo />
   </ShowcaseWrapper>
+
+  <ShowcaseWrapper class="spacer">
+    <tabs-wrapper>
+      <Tab title="Tab 1">afafafaf</Tab>
+      <Tab title="Tab 2">Hfafafafafafaf</Tab>
+      <Tab title="Tab 3">Hellafafafafafafafafafafaf3</Tab>
+      <Tab title="Tab 4">Hafafafafa</Tab>
+    </tabs-wrapper>
+  </ShowcaseWrapper>
 </template>
 
 <script>
@@ -61,6 +70,8 @@ import BaseIcon from "../components/atoms/BaseIcon";
 import ShowcaseWrapper from "./ShowcaseWrapper";
 import BaseLogo from "../components/atoms/BaseLogo";
 import BaseHeadline from "../components/atoms/BaseHeadline";
+import TabsWrapper from "../components/molecules/TabsWrapper";
+import Tab from "../components/molecules/Tab";
 
 export default {
   components: {
@@ -72,6 +83,8 @@ export default {
     BaseIcon,
     BaseHeadline,
     BaseLogo,
+    TabsWrapper,
+    Tab,
   },
 };
 </script>

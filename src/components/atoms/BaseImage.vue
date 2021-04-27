@@ -57,6 +57,10 @@ export default {
   &--large {
     width: 600px;
   }
+
+  &--extralarge {
+    width: 800px;
+  }
 }
 
 .circular--square {
