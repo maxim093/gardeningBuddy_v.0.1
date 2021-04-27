@@ -128,7 +128,6 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
-    cursor: grab;
 
     .ImageSlider-category,
     .ImageSlider-title {

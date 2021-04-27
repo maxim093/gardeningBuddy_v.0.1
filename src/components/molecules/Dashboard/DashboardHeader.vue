@@ -29,7 +29,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 20px;
 
   h1,
   h2 {

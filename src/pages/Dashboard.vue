@@ -2,36 +2,45 @@
   <div class="Dashboard">
     <dashboard-header></dashboard-header>
     <section class="Dashboard-Weather">
-      <h3>Wetter</h3>
       <weather-widget></weather-widget>
     </section>
     <section class="Dashboard-Calender">
       <full-calender></full-calender>
     </section>
     <dashboard-sidebar></dashboard-sidebar>
-    <swiper-classic class="Dashboard-Swiper1"></swiper-classic>
+    <tabs-wrapper class="Dashboard-Tabs">
+      <Tab title="Tab 1">afafafaf</Tab>
+      <Tab title="Tab 2">Hfafafafafafaf</Tab>
+      <Tab title="Tab 3">Hellafafafafafafafafafafaf3</Tab>
+      <Tab title="Tab 4">Hafafafafa</Tab>
+      <Tab title="Tab 5">Hafafafafa</Tab>
+      <Tab title="Tab 6">Hafafafafa</Tab>
+    </tabs-wrapper>
+
     <image-slider class="Dashboard-Swiper2"></image-slider>
+    <image-slider class="Dashboard-Swiper3"></image-slider>
     <section class="Dashboard-Tipps"></section>
-    <section class="Dashboard-Bla"></section>
   </div>
 </template>
 
 <script>
-import SwiperClassic from "../components/libraries/SwiperClassic";
 import ImageSlider from "../components/libraries/ImageSlider";
 import WeatherWidget from "../components/molecules/WeatherWidget";
 import DashboardHeader from "../components/molecules/Dashboard/DashboardHeader";
 import FullCalender from "../components/libraries/FullCalender";
 import DashboardSidebar from "../components/molecules/Dashboard/DashboardSidebar";
+import TabsWrapper from "../components/molecules/TabsWrapper";
+import Tab from "../components/molecules/Tab";
 
 export default {
   components: {
-    SwiperClassic,
     WeatherWidget,
     DashboardHeader,
     FullCalender,
     DashboardSidebar,
     ImageSlider,
+    Tab,
+    TabsWrapper,
   },
 };
 </script>
@@ -40,17 +49,17 @@ export default {
 .Dashboard {
   display: grid;
   grid-template-areas:
-    "Sidebar Header Header Search Weather"
-    "Sidebar Calender Calender Calender Swiper1"
-    "Sidebar Swiper2 Swiper2 Bla Swiper1"
-    "Sidebar Swiper2 Swiper2 Tipps Tipps"
-    "Sidebar Swiper2 Swiper2 Tipps Tipps";
-  grid-gap: 60px;
-  height: 95vh;
+    "Sidebar Header Header Weather"
+    "Sidebar Calender Calender Tabs"
+    "Sidebar Calender Calender Tabs"
+    "Sidebar Swiper2 Swiper3 Tipps"
+    "Sidebar Swiper2 Swiper3 Tipps";
+  grid-gap: 70px;
+  height: 96vh;
   box-sizing: border-box;
   margin: 20px;
-  grid-template-columns: 1.5fr 1fr 1fr 2fr 1fr;
-  grid-template-rows: 1fr 4fr 1fr 1fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 2fr;
 
   & * {
     border-radius: 20px;
@@ -72,7 +81,7 @@ export default {
   }
   &-Calender {
     grid-area: Calender;
-    margin-top: -200px;
+    margin-top: -170px;
   }
   &-Sidebar {
     background: #70dbb8;
@@ -84,21 +93,33 @@ export default {
   }
   &-Header {
     grid-area: Header;
+    width: 100vw;
   }
   &-Tipps {
     background: #70dbb8;
     grid-area: Tipps;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   }
-  &-Swiper1 {
-    grid-area: Swiper1;
+  &-Tabs {
+    grid-area: Tabs;
     width: 100%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    align-items: center;
+    display: flex;
   }
   &-Swiper2 {
     grid-area: Swiper2;
     width: 100%;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    cursor: grab;
+  }
+
+  &-Swiper3 {
+    grid-area: Swiper3;
+    width: 100%;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+    cursor: grab;
   }
 
   &-Todos {
