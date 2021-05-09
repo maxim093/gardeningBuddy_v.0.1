@@ -1,5 +1,5 @@
 <template>
-  <div class="Dashboard">
+  <div class="Dashboard" :class="mode">
     <dashboard-header></dashboard-header>
     <section class="Dashboard-Weather">
       <weather-widget></weather-widget>
@@ -7,7 +7,7 @@
     <section class="Dashboard-Calender">
       <full-calender></full-calender>
     </section>
-    <dashboard-sidebar></dashboard-sidebar>
+    <dashboard-sidebar @toggle="toggle"> </dashboard-sidebar>
     <tabs-wrapper class="Dashboard-Tabs">
       <Tab title="Tab 1">afafafaf</Tab>
       <Tab title="Tab 2">Hfafafafafafaf</Tab>
@@ -33,6 +33,11 @@ import TabsWrapper from "../components/molecules/TabsWrapper";
 import Tab from "../components/molecules/Tab";
 
 export default {
+  data() {
+    return {
+      mode: "dark",
+    };
+  },
   components: {
     WeatherWidget,
     DashboardHeader,
@@ -41,6 +46,15 @@ export default {
     ImageSlider,
     Tab,
     TabsWrapper,
+  },
+  methods: {
+    toggle() {
+      if (this.mode === "dark") {
+        this.mode = "light";
+      } else {
+        this.mode = "dark";
+      }
+    },
   },
 };
 </script>
@@ -60,6 +74,9 @@ export default {
   margin: 20px;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 2fr;
+  background: #f3f3f3;
+  color: #15202b;
+  transition: background 0.3s ease-in-out;
 
   & * {
     border-radius: 20px;
@@ -127,5 +144,10 @@ export default {
     grid-area: Todos;
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   }
+}
+
+.Dashboard.dark {
+  background: #192735;
+  color: #f3f3f3;
 }
 </style>
