@@ -8,7 +8,6 @@
       <li class="Dashboard-Sidebar-entry"><base-icon name="calendar-outline"></base-icon>Kalender</li>
       <li class="Dashboard-Sidebar-entry"><base-icon name="book-outline"></base-icon>Einträge</li>
       <li class="Dashboard-Sidebar-entry"><base-icon name="construct-outline"></base-icon>Tipps & Tricks</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="contrast-outline"></base-icon>Dark/mode</li>
       <li class="Dashboard-Sidebar-entry"><base-icon name="arrow-back-circle-outline"></base-icon>Einklappen</li>
 
       <div class="Dashboard-Sidebar-MeSection">
@@ -18,6 +17,7 @@
     </ul>
 
     <div class="Dashboard-Sidebar-DarkmodeToggle">
+      Darkmode
       <darkmode-toggle :mode="mode" @toggle="$emit('toggle')" />
     </div>
   </div>

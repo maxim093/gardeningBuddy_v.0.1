@@ -34,7 +34,6 @@ export default {
 <style lang="scss" scoped>
 .tabs {
   margin: 0 auto;
-  padding-left: 10px;
 }
 
 .tabs__header {
@@ -49,7 +48,6 @@ export default {
   text-align: center;
   padding: 10px 20px;
   margin-right: 10px;
-  background-color: #ddd;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.4s all ease-out;

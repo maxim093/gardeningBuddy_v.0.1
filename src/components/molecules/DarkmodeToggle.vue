@@ -10,9 +10,6 @@
 <script>
 export default {
   props: ["mode"],
-  mounted() {
-    console.log(this.mode);
-  },
 };
 </script>
 

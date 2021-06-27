@@ -89,17 +89,17 @@ export default {
     };
   },
   methods: {
-    setActive($event, status) {
-      const nodeItems = Array.from(document.getElementsByClassName("Weather--dayEntry"));
-      nodeItems[0].style.pointerEvents = "none";
-
-      if (status) {
-        nodeItems[0].classList.remove("active");
-        $event.target.classList.add("active");
-      } else {
-        $event.target.classList.remove("active");
-        nodeItems[0].classList.add("active");
-      }
+    setActive() {
+      // TODO: remove active class styling or update it
+      // const nodeItems = Array.from(document.getElementsByClassName("Weather--dayEntry"));
+      // nodeItems[0].style.pointerEvents = "none";
+      // if (status) {
+      //   nodeItems[0].classList.remove("active");
+      //   $event.target.classList.add("active");
+      // } else {
+      //   $event.target.classList.remove("active");
+      //   nodeItems[0].classList.add("active");
+      // }
     },
   },
 };
@@ -109,12 +109,10 @@ export default {
 .Weather {
   &-wrapper {
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-    background-color: transparent;
     border-radius: 10px;
     max-width: 100%;
     overflow: hidden;
-    width: 800px;
-    height: 200px;
+    height: 20vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
@@ -126,8 +124,6 @@ export default {
     align-items: center;
     position: relative;
     padding-top: 20px;
-    background-color: white;
-    width: 137px;
     transition: background-color ease-out 0.3s;
     transition: width ease-out 0.15s;
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="calendar-parent">
+  <div class="calendar-parent" :class="mode">
     <calendar-view
       :items="items"
       :show-date="showDate"
@@ -41,6 +41,7 @@ import "../../../node_modules/vue-simple-calendar/static/css/default.css";
 
 export default {
   name: "App",
+  props: ["mode"],
   components: {
     CalendarView,
     CalendarViewHeader,
@@ -173,6 +174,9 @@ export default {
     this.newItemStartDate = CalendarMath.isoYearMonthDay(CalendarMath.today());
     this.newItemEndDate = CalendarMath.isoYearMonthDay(CalendarMath.today());
   },
+  updated() {
+    console.log(this.mode);
+  },
   methods: {
     periodChanged() {
       // range, eventSource) {
@@ -230,7 +234,12 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.calendar-parent.dark * {
+  background: #192735 !important;
+  color: #f3f3f3 !important;
+}
+
 .cv-header-nav {
   order: 2;
 }
@@ -250,7 +259,7 @@ export default {
   overflow-x: hidden;
   overflow-y: hidden;
   height: 100%;
-  background-color: white;
+  /* background-color: white; */
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
 }
 /* For long calendars, ensure each week gets sufficient height. The body of the calendar will scroll if needed */
@@ -262,7 +271,7 @@ export default {
 /* These styles are optional, to illustrate the flexbility of styling the calendar purely with CSS. */
 /* Add some styling for items tagged with the "birthday" class */
 .theme-default .cv-item.birthday {
-  background-color: #e0f0e0;
+  /* background-color: #e0f0e0; */
   border-color: #d7e7d7;
 }
 .theme-default .cv-item.birthday::before {
@@ -271,7 +280,7 @@ export default {
 }
 /* The following classes style the classes computed in myDateClasses and passed to the component's dateClasses prop. */
 .theme-default .cv-day.ides {
-  background-color: #ffe0e0;
+  /* background-color: #ffe0e0; */
 }
 .ides .cv-day-number::before {
   content: "\271D";

@@ -2,7 +2,7 @@
   <swiper
     :slides-per-view="1"
     :space-between="50"
-    :autoplay="true"
+    :autoplay="autoplay"
     :scrollbar="{ draggable: true }"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
@@ -65,6 +65,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Autoplay]);
 
 // Import Swiper styles
 export default {
+  props: ["delay"],
   components: {
     Swiper,
     SwiperSlide,
