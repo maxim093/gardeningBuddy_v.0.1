@@ -3,6 +3,10 @@ import LandingPage from "../pages/LandingPage.vue";
 import Register from "../pages/Register.vue";
 import News from "../pages/News.vue";
 import Dashboard from "../pages/Dashboard.vue";
+import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
+
+//ADMIN PANEL
+import CreatePlant from "../administration/pages/CreatePlant.vue";
 
 const routes = [
   {
@@ -35,8 +39,18 @@ const routes = [
   {
     path: "/Dashboard",
     name: "Dashboard",
-    component: Dashboard
-  }
+    component: Dashboard,
+  },
+  {
+    path: "/CreatePlant",
+    name: "CreatePlant",
+    component: CreatePlant,
+  },
+  {
+    path: "/RaisedBed",
+    name: "RaisedBed",
+    component: RaisedBed,
+  },
 ];
 
 const router = createRouter({

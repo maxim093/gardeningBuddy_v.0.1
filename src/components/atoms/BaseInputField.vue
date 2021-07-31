@@ -1,16 +1,35 @@
+<!-- CustomInput.vue -->
 <template>
   <div class="Input-Wrapper">
-    <input :type="type" :class="setVariant" name="Input" placeholder="&nbsp;" />
-    <label for="Input" class="Label"><slot /></label>
-    <!-- TODO BACKGROUND ANIMATION FROM LEFT -->
-    <!-- <span class="Focus-bg"></span> -->
+    <input
+      :type="type"
+      :class="setVariant"
+      placeholder="&nbsp;"
+      :value="modelValue"
+      :name="name"
+      @input="$emit('update:modelValue', $event.target.value)"
+    />
+    <label for="Input" class="Label">{{ label }}</label>
   </div>
 </template>
 
 <script>
 export default {
   name: "BaseInputField",
+  data() {
+    return {
+      val: this.value ? this.value : "",
+    };
+  },
   props: {
+    label: {
+      type: String,
+      required: true,
+    },
+    modelValue: {
+      type: String,
+      required: true,
+    },
     type: {
       type: String,
       default: "text",
@@ -18,6 +37,9 @@ export default {
     variant: {
       type: String,
       default: "Input--green",
+    },
+    name: {
+      type: String,
     },
   },
   computed: {

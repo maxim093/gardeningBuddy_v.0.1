@@ -1,7 +1,7 @@
 <template>
   <the-header />
   <div class="Register">
-    <classic-form>
+    <classic-form @submit="registerUser">
       <template v-slot:header>
         Jetzt nur noch schnell <span>Registrieren</span><br />
         und dann kanns losgehen! 😍
@@ -15,6 +15,7 @@
 import ClassicForm from "../components/molecules/ClassicForm";
 import Background from "../assets/blob1.svg";
 import TheHeader from "../components/layout/TheHeader.vue";
+import firebase from "firebase";
 
 export default {
   data() {
@@ -25,6 +26,18 @@ export default {
   components: {
     ClassicForm,
     TheHeader,
+  },
+  methods: {
+    registerUser(value) {
+      if (value.pw === value.pwCheck) {
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(value.email, value.pw)
+          .then(() => this.$router.push("/Dashboard"))
+          .catch((err) => console.log(err.message));
+      }
+      
+    },
   },
 };
 </script>

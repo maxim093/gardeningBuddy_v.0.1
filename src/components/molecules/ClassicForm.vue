@@ -1,13 +1,19 @@
 <template>
-  <div class="ClassicForm">
+  <form @submit.prevent="onSubmit" class="ClassicForm">
     <base-headline tag="h1" styling="h2">
       <slot name="header"></slot>
     </base-headline>
-    <base-input-field variant="Input--pink" type="email">Email</base-input-field>
-    <base-input-field variant="Input--pink" type="password">Passwort</base-input-field>
-    <base-input-field variant="Input--pink" type="password">Passwort wiederholen</base-input-field>
+    <base-input-field variant="Input--pink" type="text" @input="getEmail"
+      >Email</base-input-field
+    >
+    <base-input-field variant="Input--pink" type="password" @input="getPW"
+      >Passwort</base-input-field
+    >
+    <base-input-field variant="Input--pink" type="password" @input="getPWCheck"
+      >Passwort wiederholen</base-input-field
+    >
     <base-button class="Btn--green">Registrieren</base-button>
-  </div>
+  </form>
 </template>
 <script>
 import BaseInputField from "../atoms/BaseInputField";
@@ -19,6 +25,31 @@ export default {
     BaseInputField,
     BaseButton,
     BaseHeadline,
+  },
+  emits: ["submit"],
+  data() {
+    return {
+      user: {
+        email: "",
+        pw: "",
+        pwCheck: "",
+      },
+      inputValue: "",
+    };
+  },
+  methods: {
+    onSubmit() {
+      this.$emit("submit", this.user);
+    },
+    getEmail(e) {
+      this.user.email = e.target.value;
+    },
+    getPW(e) {
+      this.user.pw = e.target.value;
+    },
+    getPWCheck(e) {
+      this.user.pwCheck = e.target.value;
+    },
   },
 };
 </script>
