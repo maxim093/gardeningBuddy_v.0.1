@@ -5,7 +5,8 @@
       <h1>Pflanze suchen</h1>
       <form @submit.prevent="searchPlant">
         <base-input-field v-model="searchInput" label="Name"></base-input-field>
-        <base-button class="Btn--green">Suchen</base-button>
+        <base-button class="Btn--pink">Suchen</base-button>
+        <base-button @click="editPlant" class="Btn--green" type="button">Speichern</base-button>
       </form>
     </div>
 
@@ -14,28 +15,24 @@
       <div v-show="!addNewDamage" class="PlantEditor-data">
         <div class="PlantEditor-data-general" v-show="searchResult.id !== 0">
           <div class="PlantEditor-searchResultWrapper">
-            <form @submit.prevent="editPlant" class="PlantEditor-searchResultEntry" @click="editPlant">
-              <base-input-field :modelValue="searchResult.data.name" name="name" label="Name"></base-input-field>
+            <form class="PlantEditor-searchResultEntry" @click="editPlant">
+              <base-input-field v-model="searchResult.data.name" name="name" label="Name"></base-input-field>
+              <base-input-field v-model="searchResult.data.general" name="general" label="Erklärung"></base-input-field>
               <base-input-field
-                :modelValue="searchResult.data.general"
-                name="general"
-                label="Erklärung"
-              ></base-input-field>
-              <base-input-field
-                :modelValue="searchResult.data.category"
+                v-model="searchResult.data.category"
                 name="category"
                 label="Kategorie"
               ></base-input-field>
             </form>
           </div>
 
+          <!-- Plant Damage Entry -->
           <div class="PlantEditor-data-currentDamage">
             <h2>Ausgewähltes Schadbild</h2>
-            <form @submit.prevent="addDamage" class="PlantEditor-addDamageEntry">
+            <form class="PlantEditor-addDamageEntry">
               <base-input-field v-model="currentDamage.name" label="Schadbild"></base-input-field>
               <textarea v-model="currentDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
               <textarea v-model="currentDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
-              <base-button class="Btn--green" type="submit">Speichern</base-button>
             </form>
           </div>
         </div>
@@ -55,6 +52,7 @@
         </div>
       </div>
 
+      <!-- Add new Damage data -->
       <div v-show="addNewDamage" class="PlantEditor-addDamageWrapper">
         <form @submit.prevent="addDamage" class="PlantEditor-addDamageEntry">
           <base-input-field v-model="newDamage.name" label="Schadbild"></base-input-field>
@@ -137,20 +135,16 @@ export default {
     },
     // edit exisisting plant
     // only for general information (not damage)
-    editPlant(submitEvent) {
-      const inputTarget = submitEvent.target.elements;
-      if (inputTarget) {
-        db.collection("plants")
-          .doc(this.searchResult.id)
-          .update({
-            category: inputTarget.category.value,
-            general: inputTarget.general.value,
-            name: inputTarget.name.value,
-          })
-          .catch((error) => {
-            console.error("Error adding document: ", error);
-          });
-      }
+    editPlant() {
+      this.searchResult.data.damage.find((e) => e.name === this.currentDamage.name);
+      console.log(this.searchResult);
+
+      db.collection("plants")
+        .doc(this.searchResult.id)
+        .update(this.searchResult.data)
+        .catch((error) => {
+          console.error("Error adding document: ", error);
+        });
     },
     // add new damage/pest to the plant
     addDamage(submitEvent) {
@@ -211,16 +205,17 @@ export default {
     }
   }
 
-  .Btn {
-    margin: 1rem 0;
-    margin-right: 100%;
-  }
-
   &-search {
     margin: 0 auto;
 
+    .Btn {
+      height: 55px;
+      margin-right: 10px;
+    }
+
     form {
       display: flex;
+      align-items: center;
 
       input {
         margin-right: 20px;
