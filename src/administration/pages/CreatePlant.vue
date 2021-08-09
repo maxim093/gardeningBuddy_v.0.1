@@ -1,7 +1,7 @@
 <template>
   <div class="PlantEditor">
     <!-- Search plant -->
-    <div class="PlantEditor-search">
+    <div class="PlantEditor__search">
       <h1>Pflanze suchen</h1>
       <form @submit.prevent="searchPlant">
         <base-input-field v-model="searchInput" label="Name"></base-input-field>
@@ -11,11 +11,11 @@
     </div>
 
     <!-- Plant data -->
-    <div class="PlantEditor-main">
-      <div v-show="!addNewDamage" class="PlantEditor-data">
-        <div class="PlantEditor-data-general" v-show="searchResult.id !== 0">
-          <div class="PlantEditor-searchResultWrapper">
-            <form class="PlantEditor-searchResultEntry" @click="editPlant">
+    <div class="PlantEditor__main">
+      <div v-show="!addNewDamage" class="PlantEditor__data">
+        <div class="PlantEditor__data__general" v-show="searchResult.id !== 0">
+          <div class="PlantEditor__searchResultWrapper">
+            <form class="PlantEditor__searchResultEntry" @click="editPlant">
               <base-input-field v-model="searchResult.data.name" name="name" label="Name"></base-input-field>
               <base-input-field v-model="searchResult.data.general" name="general" label="Erklärung"></base-input-field>
               <base-input-field
@@ -27,19 +27,19 @@
           </div>
 
           <!-- Plant Damage Entry -->
-          <div class="PlantEditor-data-currentDamage">
+          <div class="PlantEditor__data__currentDamage">
             <h2>Ausgewähltes Schadbild</h2>
-            <form class="PlantEditor-addDamageEntry">
+            <form class="PlantEditor__addDamageEntry">
               <base-input-field v-model="currentDamage.name" label="Schadbild"></base-input-field>
               <textarea v-model="currentDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
               <textarea v-model="currentDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
             </form>
           </div>
         </div>
-        <div class="PlantEditor-data-damage">
+        <div class="PlantEditor__data__damage">
           <div
             @click="showDamage"
-            class="PlantEditor-data-damage--entry"
+            class="PlantEditor__data__damage__entry"
             v-for="damage in searchResult.data.damage"
             :key="damage.name"
             :id="damage.name"
@@ -47,14 +47,14 @@
             <h1>{{ damage.name }}</h1>
           </div>
         </div>
-        <div v-show="searchResult.id !== 0" class="PlantEditor-showAddDamageWrapper">
+        <div v-show="searchResult.id !== 0" class="PlantEditor__showAddDamageWrapper">
           <base-button @click="addNewDamage = !addNewDamage"><base-icon name="add" size="large" /> </base-button>
         </div>
       </div>
 
       <!-- Add new Damage data -->
-      <div v-show="addNewDamage" class="PlantEditor-addDamageWrapper">
-        <form @submit.prevent="addDamage" class="PlantEditor-addDamageEntry">
+      <div v-show="addNewDamage" class="PlantEditor__addDamageWrapper">
+        <form @submit.prevent="addDamage" class="PlantEditor__addDamageEntry">
           <base-input-field v-model="newDamage.name" label="Schadbild"></base-input-field>
           <textarea v-model="newDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
           <textarea v-model="newDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
@@ -181,7 +181,7 @@ export default {
     font-family: $font-WS;
   }
 
-  &-showAddDamageWrapper {
+  &__showAddDamageWrapper {
     margin-left: auto;
     height: min-content;
 
@@ -196,7 +196,7 @@ export default {
     }
   }
 
-  &-textArea-wrapper {
+  &__textArea__wrapper {
     display: flex;
     flex-wrap: wrap;
 
@@ -205,7 +205,7 @@ export default {
     }
   }
 
-  &-search {
+  &__search {
     margin: 0 auto;
 
     .Btn {
@@ -223,12 +223,12 @@ export default {
     }
   }
 
-  &-searchResultEntry {
+  &__searchResultEntry {
     cursor: pointer;
     width: min-content;
   }
 
-  &-addDamageEntry {
+  &__addDamageEntry {
     display: flex;
     flex-direction: column;
     width: min-content;
@@ -242,26 +242,26 @@ export default {
     }
   }
 
-  &-detailsWrapper {
+  &__detailsWrapper {
     display: flex;
     justify-content: space-around;
   }
 
-  &-textAreaWrapper {
+  &__textAreaWrapper {
     display: flex;
     flex-direction: column;
     text-align: left;
   }
 
-  &-plant {
+  &__plant {
     display: flex;
     flex-direction: column;
   }
 
-  &-data {
+  &__data {
     display: flex;
 
-    &-currentDamage {
+    &__currentDamage {
       width: min-content;
       cursor: pointer;
 
@@ -270,12 +270,12 @@ export default {
       }
     }
 
-    &-damage {
+    &__damage {
       display: flex;
       flex-wrap: wrap;
     }
 
-    &-damage--entry {
+    &__damage__entry {
       border: 1px solid black;
       height: 200px;
       width: 200px;
