@@ -6,9 +6,7 @@
       <form @submit.prevent="searchPlant">
         <base-input-field v-model="searchInput" label="Name"></base-input-field>
         <base-button class="Btn--pink">Suchen</base-button>
-        <base-button @click="editPlant" class="Btn--green" type="button"
-          >Speichern</base-button
-        >
+        <base-button @click="editPlant" class="Btn--green" type="button">Speichern</base-button>
       </form>
     </div>
 
@@ -18,16 +16,8 @@
         <div class="PlantEditor__data__general" v-show="searchResult.id !== 0">
           <div class="PlantEditor__searchResultWrapper">
             <form class="PlantEditor__searchResultEntry" @click="editPlant">
-              <base-input-field
-                v-model="searchResult.data.name"
-                name="name"
-                label="Name"
-              ></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.general"
-                name="general"
-                label="Erklärung"
-              ></base-input-field>
+              <base-input-field v-model="searchResult.data.name" name="name" label="Name"></base-input-field>
+              <base-input-field v-model="searchResult.data.general" name="general" label="Erklärung"></base-input-field>
               <base-input-field
                 v-model="searchResult.data.category"
                 name="category"
@@ -40,22 +30,9 @@
           <div class="PlantEditor__data__currentDamage">
             <h2>Ausgewähltes Schadbild</h2>
             <form class="PlantEditor__addDamageEntry">
-              <base-input-field
-                v-model="currentDamage.name"
-                label="Schadbild"
-              ></base-input-field>
-              <textarea
-                v-model="currentDamage.desc"
-                name="desc"
-                placeholder="Beschreibung"
-                rows="5"
-              ></textarea>
-              <textarea
-                v-model="currentDamage.tipps"
-                name="tipps"
-                placeholder="Tipps"
-                rows="5"
-              ></textarea>
+              <base-input-field v-model="currentDamage.name" label="Schadbild"></base-input-field>
+              <textarea v-model="currentDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
+              <textarea v-model="currentDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
             </form>
           </div>
         </div>
@@ -73,43 +50,20 @@
             <h1>{{ damage.name }}</h1>
           </div>
         </div>
-        <div
-          v-show="searchResult.id !== 0"
-          class="PlantEditor__showAddDamageWrapper"
-        >
-          <base-button @click="addNewDamage = !addNewDamage"
-            ><base-icon name="add" size="large" />
-          </base-button>
+        <div v-show="searchResult.id !== 0" class="PlantEditor__showAddDamageWrapper">
+          <base-button @click="addNewDamage = !addNewDamage"><base-icon name="add" size="large" /> </base-button>
         </div>
       </div>
 
       <!-- Add new Damage data -->
       <div v-show="addNewDamage" class="PlantEditor__addDamageWrapper">
         <form @submit.prevent="addDamage" class="PlantEditor__addDamageEntry">
-          <base-input-field
-            v-model="newDamage.name"
-            label="Schadbild"
-          ></base-input-field>
-          <textarea
-            v-model="newDamage.desc"
-            name="desc"
-            placeholder="Beschreibung"
-            rows="5"
-          ></textarea>
-          <textarea
-            v-model="newDamage.tipps"
-            name="tipps"
-            placeholder="Tipps"
-            rows="5"
-          ></textarea>
+          <base-input-field v-model="newDamage.name" label="Schadbild"></base-input-field>
+          <textarea v-model="newDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
+          <textarea v-model="newDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
           <base-button class="Btn--green" type="submit">Speichern</base-button>
         </form>
-        <base-button
-          @click="addNewDamage = !addDamage"
-          class="Btn--pink"
-          type="submit"
-          >Zurück</base-button
-        >
+        <base-button @click="addNewDamage = !addDamage" class="Btn--pink" type="submit">Zurück</base-button>
       </div>
     </div>
   </div>
@@ -185,9 +139,7 @@ export default {
     // edit exisisting plant
     // only for general information (not damage)
     editPlant() {
-      this.searchResult.data.damage.find(
-        (e) => e.name === this.currentDamage.name
-      );
+      this.searchResult.data.damage.find((e) => e.name === this.currentDamage.name);
       console.log(this.searchResult);
 
       db.collection("plants")
@@ -219,19 +171,14 @@ export default {
       if (submitEvent.target.id) {
         const allDamages = this.searchResult.data.damage;
         const searchedDamage = submitEvent.target.id;
-        const currentDamage = allDamages.filter(
-          (element) => element.name === searchedDamage
-        );
+        const currentDamage = allDamages.filter((element) => element.name === searchedDamage);
 
         this.currentDamage = currentDamage[0];
       }
     },
     deleteDamage(submitEvent) {
-      const id = submitEvent.target.closest(".PlantEditor__data__damage__entry")
-        .id;
-      const removedDamage = this.searchResult.data.damage.filter(
-        (element) => element.name !== id
-      );
+      const id = submitEvent.target.closest(".PlantEditor__data__damage__entry").id;
+      const removedDamage = this.searchResult.data.damage.filter((element) => element.name !== id);
 
       db.collection("plants")
         .doc(this.searchResult.id)

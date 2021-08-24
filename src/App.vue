@@ -23,12 +23,12 @@ export default {
           this.$route.path !== "/News" &&
           this.$route.path !== "/Register" &&
           this.$route.path !== "/CreatePlant" &&
-          this.$route.path !== "/RaisedBed"
+          this.$route.path !== "/RaisedBed" &&
+          this.$route.path !== "/GetStarted"
         ) {
           if (!user) {
             this.$router.push("/Landingpage");
           } else {
-            console.log(user);
             this.$router.push("/Dashboard");
           }
         }

@@ -3,6 +3,7 @@ import LandingPage from "../pages/LandingPage.vue";
 import Register from "../pages/Register.vue";
 import News from "../pages/News.vue";
 import Dashboard from "../pages/Dashboard.vue";
+import GetStarted from "../pages/GetStarted.vue";
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
 //ADMIN PANEL
@@ -50,6 +51,11 @@ const routes = [
     path: "/RaisedBed",
     name: "RaisedBed",
     component: RaisedBed,
+  },
+  {
+    path: "/GetStarted",
+    name: "GetStarted",
+    component: GetStarted,
   },
 ];
 
