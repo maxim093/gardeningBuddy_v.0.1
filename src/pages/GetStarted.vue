@@ -8,11 +8,11 @@
       </p>
     </div>
 
-    <transition name="fade">
-      <div v-if="optionIsChosen" class="GetStarted__success">
-        <h2>Super Sache!</h2>
-      </div>
-    </transition>
+    <div v-if="optionIsChosen" class="GetStarted__success">
+      <h2>Großartig! Dann lass uns loslegen😊</h2>
+    </div>
+
+    <div class="GetStarted__finish"></div>
 
     <div class="GetStarted__main">
       <div
@@ -23,6 +23,7 @@
         @click="chooseOption"
         :id="option.name"
         v-show="option.show === true"
+        :ref="setItemRef"
       >
         <h3 class="GetStarted__main__option__title">{{ option.name }}</h3>
         <p class="GetStarted__main__option__subTitle">{{ option.description }}</p>
@@ -37,7 +38,23 @@ import raisedBed from "../assets/raisedbed.jpg";
 import bed from "../assets/bed.png";
 import pot from "../assets/pot.jpg";
 
+import gsap from "gsap";
+
+const timeline = gsap.timeline();
+
 export default {
+  mounted() {
+    timeline
+      .from(".GetStarted__header__title", { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 })
+      .from(".GetStarted__header__subTitle", { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 })
+      .from(".GetStarted__main__option", { y: 50, autoAlpha: 0, duration: 0.5, stagger: 0.5 });
+  },
+  beforeUpdate() {
+    this.itemRefs = [];
+  },
+  updated() {
+    console.log(this.itemRefs);
+  },
   data() {
     return {
       options: [
@@ -47,6 +64,7 @@ export default {
       ],
       optionIsChosen: false,
       show: true,
+      itemRefs: [],
     };
   },
   methods: {
@@ -58,57 +76,64 @@ export default {
       }
     },
     chooseOption(event) {
-      const name = event.target.id;
-      const elementClassList = event.target.classList;
-      const choosenOption = this.options.filter((e) => e.name !== name);
-      choosenOption.forEach((e) => {
-        e.show = !e.show;
-      });
+      const element = event.target;
+      const elementClassList = element.classList;
 
-      if (elementClassList.contains("choosen")) {
-        elementClassList.remove("choosen");
+      let currentElementPos = element.getBoundingClientRect();
+      let rightToMidPos = document.body.clientWidth / 2 - currentElementPos.left - 210;
+      let leftToMidPos = document.body.clientWidth / 2 - currentElementPos.right - -220;
+
+      if (elementClassList.contains("choosen")) return;
+
+      elementClassList.add("choosen");
+
+      const filterChosen = this.itemRefs.filter((e) => !e.classList.contains("choosen"));
+
+      if (element.classList.contains("GetStarted__main__option-color1")) {
+        timeline
+          .to(filterChosen, { y: -50, autoAlpha: 0, duration: 0.4, stagger: 0.5 })
+          .to(element, { x: rightToMidPos, duration: 0.75 })
+          .to("img", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__title", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__subTitle", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(element, { autoAlpha: 0, duration: 1 })
+          .to(".GetStarted__finish", { autoAlpha: 1, height: "100vh", width: "100vw", top: 0, duration: 0.5 }, "-=1");
+      } else if (element.classList.contains("GetStarted__main__option-color3")) {
+        timeline
+          .to(filterChosen, { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 })
+          .to(element, { x: leftToMidPos, duration: 1 });
       } else {
-        elementClassList.add("choosen");
+        timeline.to(filterChosen, { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 });
       }
 
       this.optionIsChosen = !this.optionIsChosen;
+    },
+    setItemRef(el) {
+      if (el) {
+        this.itemRefs.push(el);
+      }
     },
   },
 };
 </script>
 
 <style lang="scss">
-.list-leave-to {
-  transform: translateY(100px);
-}
-
-.list-move {
-  transition: all 0.3s;
-  transition: scale;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter-from, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-
 .GetStarted {
   height: 100vh;
   position: relative;
 
   &__header {
-    margin: 10% 50px;
     &__title {
       font-size: 62px;
+      visibility: hidden;
+      margin-top: 0;
+      padding-top: 20px;
     }
     &__subTitle {
       width: 50%;
       margin: 0 auto;
       font-size: 18px;
+      visibility: hidden;
     }
   }
 
@@ -123,10 +148,24 @@ export default {
     }
   }
 
+  &__finish {
+    height: 150px;
+    width: 400px;
+    border-radius: 15px;
+    padding: 20px;
+    background: palegreen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    visibility: hidden;
+  }
+
   &__main {
     display: flex;
     justify-content: space-evenly;
     margin-top: 15%;
+
     &__option {
       height: 150px;
       width: 400px;
@@ -134,7 +173,7 @@ export default {
       text-align: left;
       padding: 20px;
       cursor: pointer;
-      transition: all 0.3s;
+      visibility: hidden;
 
       &__title,
       &__subTitle,
