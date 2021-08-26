@@ -3,13 +3,13 @@
     <ul class="Dashboard-Sidebar-MainNav">
       <li class="Dashboard-Sidebar-entry"><base-icon name="leaf-outline"></base-icon>Dashboard</li>
       <li class="Dashboard-Sidebar-entry"><base-icon name="checkmark-done-outline"></base-icon>Todos</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="calendar-outline"></base-icon>Kalender</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="book-outline"></base-icon>Einträge</li>
+      <!-- <li class="Dashboard-Sidebar-entry"><base-icon name="calendar-outline"></base-icon>Kalender</li> -->
+      <!-- <li class="Dashboard-Sidebar-entry"><base-icon name="book-outline"></base-icon>Einträge</li> -->
       <li class="Dashboard-Sidebar-entry"><base-icon name="construct-outline"></base-icon>Tipps & Tricks</li>
       <li class="Dashboard-Sidebar-entry"><base-icon name="person-circle-outline"></base-icon>Mein Konto</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="settings-outline"></base-icon>Einstellungen</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="contrast-outline"></base-icon>Dark/mode</li>
-      <li class="Dashboard-Sidebar-entry"><base-icon name="arrow-back-circle-outline"></base-icon>Einklappen</li>
+      <!-- <li class="Dashboard-Sidebar-entry"><base-icon name="settings-outline"></base-icon>Einstellungen</li> -->
+      <!-- <li class="Dashboard-Sidebar-entry"><base-icon name="contrast-outline"></base-icon>Dark/mode</li> -->
+      <!-- <li class="Dashboard-Sidebar-entry"><base-icon name="arrow-back-circle-outline"></base-icon>Einklappen</li> -->
     </ul>
   </div>
 </template>
@@ -25,6 +25,7 @@ export default {
 
 <style lang="scss" scoped>
 .Dashboard-Sidebar {
+  visibility: hidden;
   &-MainNav {
     list-style: none;
     padding: 20px;

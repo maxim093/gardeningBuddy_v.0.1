@@ -52,9 +52,6 @@ export default {
   beforeUpdate() {
     this.itemRefs = [];
   },
-  updated() {
-    console.log(this.itemRefs);
-  },
   data() {
     return {
       options: [
@@ -97,13 +94,27 @@ export default {
           .to(".GetStarted__main__option__title", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
           .to(".GetStarted__main__option__subTitle", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
           .to(element, { autoAlpha: 0, duration: 1 })
-          .to(".GetStarted__finish", { autoAlpha: 1, height: "100vh", width: "100vw", top: 0, duration: 0.5 }, "-=1");
+          .to(".GetStarted__finish", { autoAlpha: 1, height: "100vh", width: "100vw", top: 0, duration: 0.5 }, "-=1")
+          .add(() => {
+            this.$router.push("/newDashboard");
+          });
       } else if (element.classList.contains("GetStarted__main__option-color3")) {
         timeline
           .to(filterChosen, { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 })
-          .to(element, { x: leftToMidPos, duration: 1 });
+          .to(element, { x: leftToMidPos, duration: 1 })
+          .to("img", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__title", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__subTitle", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(element, { autoAlpha: 0, duration: 1 })
+          .to(".GetStarted__finish", { autoAlpha: 1, height: "100vh", width: "100vw", top: 0, duration: 0.5 }, "-=1");
       } else {
-        timeline.to(filterChosen, { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 });
+        timeline
+          .to(filterChosen, { y: -50, autoAlpha: 0, duration: 1, stagger: 0.5 })
+          .to("img", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__title", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(".GetStarted__main__option__subTitle", { autoAlpha: 0, duration: 0.5 }, "-=0.4")
+          .to(element, { autoAlpha: 0, duration: 1 })
+          .to(".GetStarted__finish", { autoAlpha: 1, height: "100vh", width: "100vw", top: 0, duration: 0.5 }, "-=1");
       }
 
       this.optionIsChosen = !this.optionIsChosen;

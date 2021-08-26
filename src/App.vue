@@ -19,19 +19,21 @@ export default {
   methods: {
     checkUser() {
       firebase.auth().onAuthStateChanged((user) => {
-        if (
-          this.$route.path !== "/News" &&
-          this.$route.path !== "/Register" &&
-          this.$route.path !== "/CreatePlant" &&
-          this.$route.path !== "/RaisedBed" &&
-          this.$route.path !== "/GetStarted"
-        ) {
-          if (!user) {
-            this.$router.push("/Landingpage");
-          } else {
-            this.$router.push("/Dashboard");
-          }
-        }
+        console.log(user);
+        // if (
+        //   this.$route.path !== "/News" &&
+        //   this.$route.path !== "/Register" &&
+        //   this.$route.path !== "/CreatePlant" &&
+        //   this.$route.path !== "/RaisedBed" &&
+        //   this.$route.path !== "/GetStarted" &&
+        //   this.$route.path !== "/newDashboard"
+        // ) {
+        //   if (!user) {
+        //     this.$router.push("/Landingpage");
+        //   } else {
+        //     this.$router.push("/Dashboard");
+        //   }
+        // }
       });
     },
   },

@@ -4,6 +4,7 @@ import Register from "../pages/Register.vue";
 import News from "../pages/News.vue";
 import Dashboard from "../pages/Dashboard.vue";
 import GetStarted from "../pages/GetStarted.vue";
+import NewDashboard from "../pages/NewDashboard.vue";
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
 //ADMIN PANEL
@@ -56,6 +57,11 @@ const routes = [
     path: "/GetStarted",
     name: "GetStarted",
     component: GetStarted,
+  },
+  {
+    path: "/NewDashboard",
+    name: "NewDashboard",
+    component: NewDashboard,
   },
 ];
 
