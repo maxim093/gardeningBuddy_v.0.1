@@ -34,7 +34,9 @@
 </template>
 
 <script>
-import raisedBed from "../assets/raisedbed.jpg";
+import raisedBed from "../assets/raisedBedNormal/raisedBed1.png";
+// import bed2 from "../assets/raisedBedNormal/lowPolyBed.png";
+
 import bed from "../assets/bed.png";
 import pot from "../assets/pot.jpg";
 
@@ -198,6 +200,12 @@ export default {
 
       &-color1 {
         background: palegreen;
+        img.GetStarted__main__option__img {
+          height: 203% !important;
+          width: auto !important;
+          margin-left: 12% !important;
+          margin-top: -41% !important;
+        }
       }
       &-color2 {
         background: palevioletred;

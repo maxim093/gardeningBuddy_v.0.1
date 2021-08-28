@@ -1,15 +1,18 @@
 <template>
   <div class="NewDashboard">
     <burger-menu @menuClicked="openMenu"></burger-menu>
-
+    <raised-bed></raised-bed>
     <h1>New Dashboard</h1>
     <SideBar />
+    <img src="../assets/tomato.png" />
   </div>
 </template>
 
 <script>
 import SideBar from "../components/molecules/Dashboard/DashboardSidebar.vue";
 import BurgerMenu from "../components/molecules/BurgerMenu.vue";
+
+import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
 import gsap from "gsap";
 
@@ -19,6 +22,7 @@ export default {
   components: {
     SideBar,
     BurgerMenu,
+    RaisedBed,
   },
   data() {
     return {

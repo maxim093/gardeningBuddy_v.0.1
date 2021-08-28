@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      x: 10,
+      x: 9,
       y: 4,
     };
   },
@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .Wrapper {
-  background-image: url("../../../assets/test.jpg");
+  background-image: url("../../../assets/raisedBedNormal/raisedBed1.png");
   background-repeat: no-repeat;
   background-size: contain;
   height: 1000px;
