@@ -2,105 +2,69 @@
   <div class="Weather-wrapper">
     <div class="Weather--dayEntry active" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
-        <span>Di,</span>
+        <span>Di, </span>
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
         <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <base-link to="/" class="Link--black dayEntry--more">
-        Mehr
-        <base-icon name="chevron-forward-outline" />
-      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
-        <span>Di,</span>
+        <span>Di, </span>
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
         <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <base-link to="/" class="Link--black dayEntry--more">
-        Mehr
-        <base-icon name="chevron-forward-outline" />
-      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
-        <span>Di,</span>
+        <span>Di, </span>
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
         <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <base-link to="/" class="Link--black dayEntry--more">
-        Mehr
-        <base-icon name="chevron-forward-outline" />
-      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
-        <span>Di,</span>
+        <span>Di, </span>
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
         <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <base-link to="/" class="Link--black dayEntry--more">
-        Mehr
-        <base-icon name="chevron-forward-outline" />
-      </base-link>
     </div>
     <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
       <div class="dayEntry--date">
-        <span>Di,</span>
+        <span>Di, </span>
         <span>21.06.20</span>
       </div>
       <div class="dayEntry--temp">
         <base-icon name="sunny-outline" class="Weather--dayEntry-curIcon" size="large" color="Icon--black" />
         <span>23 &#176;</span>
       </div>
-      <base-link to="/" class="Link--black dayEntry--more">
-        Mehr
-        <base-icon name="chevron-forward-outline" />
-      </base-link>
     </div>
   </div>
 </template>
 
 <script>
 import BaseIcon from "../atoms/BaseIcon";
-import BaseLink from "../atoms/BaseLink";
 
 export default {
   name: "WeatherWidget",
   components: {
     BaseIcon,
-    BaseLink,
   },
   data() {
     return {
       hover: false,
     };
-  },
-  methods: {
-    setActive($event, status) {
-      const nodeItems = Array.from(document.getElementsByClassName("Weather--dayEntry"));
-      nodeItems[0].style.pointerEvents = "none";
-
-      if (status) {
-        nodeItems[0].classList.remove("active");
-        $event.target.classList.add("active");
-      } else {
-        $event.target.classList.remove("active");
-        nodeItems[0].classList.add("active");
-      }
-    },
   },
 };
 </script>
@@ -114,9 +78,11 @@ export default {
     max-width: 100%;
     overflow: hidden;
     width: 800px;
-    height: 200px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    position: absolute;
+    top: 10px;
+    right: 80px;
   }
 
   &--dayEntry {
@@ -125,28 +91,24 @@ export default {
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    padding-top: 20px;
     background-color: white;
     width: 137px;
     transition: background-color ease-out 0.3s;
     transition: width ease-out 0.15s;
+    padding-top: 10px;
 
     .dayEntry--temp {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      align-items: center;
 
       span {
-        position: absolute;
-        bottom: 50px;
-      }
-
-      > * {
-        margin-bottom: 5px;
+        margin-left: 10px;
       }
     }
     .dayEntry--date {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
     }
 
     &-curIcon {

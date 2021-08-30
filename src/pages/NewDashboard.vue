@@ -1,16 +1,21 @@
 <template>
   <div class="NewDashboard">
     <burger-menu @menuClicked="openMenu"></burger-menu>
-    <raised-bed></raised-bed>
-    <h1>New Dashboard</h1>
     <SideBar />
-    <img src="../assets/tomato.png" />
+    <weather-box></weather-box>
+    <info-box></info-box>
+    <raised-bed></raised-bed>
+    <!-- <img src="../assets/tomato.png" /> -->
   </div>
 </template>
 
 <script>
 import SideBar from "../components/molecules/Dashboard/DashboardSidebar.vue";
 import BurgerMenu from "../components/molecules/BurgerMenu.vue";
+
+import WeatherBox from "../components/molecules/WeatherWidget.vue";
+
+import InfoBox from "../components/molecules/InfoBox.vue";
 
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
@@ -22,6 +27,8 @@ export default {
   components: {
     SideBar,
     BurgerMenu,
+    InfoBox,
+    WeatherBox,
     RaisedBed,
   },
   data() {
@@ -32,7 +39,6 @@ export default {
   methods: {
     openMenu(value) {
       console.log(value);
-
       if (value) {
         TL.fromTo(".Dashboard-Sidebar", { x: -100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1 });
       } else {

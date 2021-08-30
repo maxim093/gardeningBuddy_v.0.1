@@ -26,6 +26,10 @@ export default {
 <style lang="scss" scoped>
 .Dashboard-Sidebar {
   visibility: hidden;
+  z-index: 9999;
+  position: absolute;
+  top: 30%;
+
   &-MainNav {
     list-style: none;
     padding: 20px;
