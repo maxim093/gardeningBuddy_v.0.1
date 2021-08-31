@@ -25,8 +25,8 @@
                 v-model="searchResult.data.general"
                 name="general"
                 placeholder="Erklärung"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <base-input-field
                 v-model="searchResult.data.category"
@@ -60,8 +60,8 @@
                 v-model="searchResult.data.nutritionalNeeds"
                 name="nutritionalNeeds"
                 placeholder="Fruchtfolge/Nährstoffbedarf"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
               <base-input-field
@@ -74,72 +74,72 @@
                 v-model="searchResult.data.watering"
                 name="watering"
                 placeholder="Wasserbedarf"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="fertilization">Düngung</label>
               <textarea
                 v-model="searchResult.data.fertilization"
                 name="fertilization"
                 placeholder="Düngung"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="culture">Kultur</label>
               <textarea
                 v-model="searchResult.data.culture"
                 name="culture"
                 placeholder="Kultur"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="harvest">Ernte</label>
               <textarea
                 v-model="searchResult.data.harvest"
                 name="harvest"
                 placeholder="Ernte"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="wintering">Überwinterung</label>
               <textarea
                 v-model="searchResult.data.wintering"
                 name="wintering"
                 placeholder="Überwinterung"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="tipps">Tipps</label>
               <textarea
                 v-model="searchResult.data.tipps"
                 name="tipps"
                 placeholder="Tipps"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="healthBenefits">Gesundheitsvorteile</label>
               <textarea
                 v-model="searchResult.data.healthBenefits"
                 name="healthBenefits"
                 placeholder="Gesundheitsvorteile"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="warning">Achtung!</label>
               <textarea
                 v-model="searchResult.data.warning"
                 name="warning"
                 placeholder="Achtung!"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
               <label for="facts">Fakten</label>
               <textarea
                 v-model="searchResult.data.facts"
                 name="facts"
                 placeholder="Fakten"
-                cols="38"
-                rows="5"
+                cols="61"
+                rows="10"
               ></textarea>
             </form>
           </div>
@@ -397,6 +397,10 @@ export default {
   &__searchResultEntry {
     cursor: pointer;
     width: min-content;
+
+    .Input-Wrapper .Input {
+      width: 600px;
+    }
   }
 
   &__addDamageEntry {
@@ -445,6 +449,7 @@ export default {
     &__damage {
       display: flex;
       flex-wrap: wrap;
+      align-content: baseline;
     }
 
     &__damage__entry {
@@ -456,7 +461,9 @@ export default {
       justify-content: center;
       cursor: pointer;
       margin-left: 40px;
+      margin-bottom: 20px;
       position: relative;
+      word-break: break-word;
 
       .Btn {
         position: absolute;
