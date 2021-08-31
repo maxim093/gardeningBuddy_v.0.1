@@ -17,7 +17,61 @@
           <div class="PlantEditor__searchResultWrapper">
             <form class="PlantEditor__searchResultEntry" @click="editPlant">
               <base-input-field v-model="searchResult.data.name" name="name" label="Name"></base-input-field>
-              <base-input-field v-model="searchResult.data.general" name="general" label="Erklärung"></base-input-field>
+              <textarea
+                v-model="searchResult.data.general"
+                name="general"
+                label="Erklärung"
+                cols="38"
+                rows="5"
+              ></textarea>
+
+              <base-input-field
+                v-model="searchResult.data.goodPartner"
+                name="goodPartner"
+                label="Gute Nachbarn"
+              ></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.badPartner"
+                name="bardPartner"
+                label="Schlechte Nachbarn"
+              ></base-input-field>
+              <base-input-field v-model="searchResult.data.distance" name="distance" label="Abstand"></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.location"
+                name="location"
+                label="Standort"
+              ></base-input-field>
+              <base-input-field v-model="searchResult.data.care" name="care" label="Pflege"></base-input-field>
+              <base-input-field v-model="searchResult.data.culture" name="culture" label="Kultur"></base-input-field>
+              <base-input-field v-model="searchResult.data.facts" name="facts" label="Fakten"></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.healthBenefits"
+                name="healthBenefits"
+                label="Health benefits"
+              ></base-input-field>
+              <base-input-field v-model="searchResult.data.warning" name="warning" label="Achtung!"></base-input-field>
+              <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.wintering"
+                name="wintering"
+                label="Überwinterung"
+              ></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.seedType"
+                name="seedType"
+                label="Samentyp(hell/dunkelkeimer)"
+              ></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.nutritionalNeeds"
+                name="nutritionalNeeds"
+                label="Fruchtfolge/Nährstoffbedarf"
+              ></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.insectFriendly"
+                name="insectFriendly"
+                label="Insektenfreundlich"
+              ></base-input-field>
+
               <base-input-field
                 v-model="searchResult.data.category"
                 name="category"
@@ -139,15 +193,29 @@ export default {
     // edit exisisting plant
     // only for general information (not damage)
     editPlant() {
-      this.searchResult.data.damage.find((e) => e.name === this.currentDamage.name);
-      console.log(this.searchResult);
+      if (this.searchResult.data.damage === undefined) {
+        const addDamageIfNotExist = {
+          name: this.searchResult.data.name,
+          damage: [{ desc: "", name: "", tipps: "" }],
+        };
+        db.collection("plants")
+          .doc(this.searchResult.id)
+          .update(addDamageIfNotExist)
+          .catch((error) => {
+            console.error("Error adding document: ", error);
+          });
+        return;
+      } else {
+        this.searchResult.data.damage.find((e) => e.name === this.currentDamage.name);
+        console.log(this.searchResult);
 
-      db.collection("plants")
-        .doc(this.searchResult.id)
-        .update(this.searchResult.data)
-        .catch((error) => {
-          console.error("Error adding document: ", error);
-        });
+        db.collection("plants")
+          .doc(this.searchResult.id)
+          .update(this.searchResult.data)
+          .catch((error) => {
+            console.error("Error adding document: ", error);
+          });
+      }
     },
     // add new damage/pest to the plant
     addDamage(submitEvent) {
@@ -201,6 +269,11 @@ export default {
 .PlantEditor {
   padding: 20px;
   text-align: left;
+
+  .Label {
+    color: #000;
+    font-weight: 800;
+  }
 
   textarea {
     font-size: 18px;
