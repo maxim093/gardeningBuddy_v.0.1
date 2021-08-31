@@ -20,6 +20,7 @@
           <div class="PlantEditor__searchResultWrapper">
             <form class="PlantEditor__searchResultEntry" @click="editPlant">
               <base-input-field v-model="searchResult.data.name" name="name" label="Name"></base-input-field>
+              <label for="general">Erklärung</label>
               <textarea
                 v-model="searchResult.data.general"
                 name="general"
@@ -27,7 +28,17 @@
                 cols="38"
                 rows="5"
               ></textarea>
-
+              <base-input-field
+                v-model="searchResult.data.category"
+                name="category"
+                label="Kategorie"
+              ></base-input-field>
+              <base-input-field
+                v-model="searchResult.data.location"
+                name="location"
+                label="Standort"
+              ></base-input-field>
+              <base-input-field v-model="searchResult.data.ground" name="ground" label="Boden"></base-input-field>
               <base-input-field
                 v-model="searchResult.data.goodPartner"
                 name="goodPartner"
@@ -40,27 +51,25 @@
               ></base-input-field>
               <base-input-field v-model="searchResult.data.distance" name="distance" label="Abstand"></base-input-field>
               <base-input-field
-                v-model="searchResult.data.location"
-                name="location"
-                label="Standort"
+                v-model="searchResult.data.seedType"
+                name="seedType"
+                label="Samentyp(hell/dunkelkeimer)"
               ></base-input-field>
-              <base-input-field v-model="searchResult.data.ground" name="ground" label="Boden"></base-input-field>
+              <label for="nutritionalNeeds">Fruchtfolge/Nährstoffbedarf</label>
+              <textarea
+                v-model="searchResult.data.nutritionalNeeds"
+                name="nutritionalNeeds"
+                placeholder="Fruchtfolge/Nährstoffbedarf"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
               <base-input-field
                 v-model="searchResult.data.insectFriendly"
                 name="insectFriendly"
                 label="Insektenfreundlich"
               ></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.seedType"
-                name="seedType"
-                label="Samentyp(hell/dunkelkeimer)"
-              ></base-input-field>
-              <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.category"
-                name="category"
-                label="Kategorie"
-              ></base-input-field>
+              <label for="watering">Wasserbedarf</label>
               <textarea
                 v-model="searchResult.data.watering"
                 name="watering"
@@ -68,6 +77,7 @@
                 cols="38"
                 rows="5"
               ></textarea>
+              <label for="fertilization">Düngung</label>
               <textarea
                 v-model="searchResult.data.fertilization"
                 name="fertilization"
@@ -75,6 +85,7 @@
                 cols="38"
                 rows="5"
               ></textarea>
+              <label for="culture">Kultur</label>
               <textarea
                 v-model="searchResult.data.culture"
                 name="culture"
@@ -82,13 +93,7 @@
                 cols="38"
                 rows="5"
               ></textarea>
-              <textarea
-                v-model="searchResult.data.facts"
-                name="facts"
-                placeholder="Fakten"
-                cols="38"
-                rows="5"
-              ></textarea>
+              <label for="harvest">Ernte</label>
               <textarea
                 v-model="searchResult.data.harvest"
                 name="harvest"
@@ -96,20 +101,7 @@
                 cols="38"
                 rows="5"
               ></textarea>
-              <textarea
-                v-model="searchResult.data.healthBenefits"
-                name="healthBenefits"
-                placeholder="Gesundheitsvorteile"
-                cols="38"
-                rows="5"
-              ></textarea>
-              <textarea
-                v-model="searchResult.data.warning"
-                name="warning"
-                placeholder="Achtung!"
-                cols="38"
-                rows="5"
-              ></textarea>
+              <label for="wintering">Überwinterung</label>
               <textarea
                 v-model="searchResult.data.wintering"
                 name="wintering"
@@ -117,10 +109,35 @@
                 cols="38"
                 rows="5"
               ></textarea>
+              <label for="tipps">Tipps</label>
               <textarea
-                v-model="searchResult.data.nutritionalNeeds"
-                name="nutritionalNeeds"
-                placeholder="Fruchtfolge/Nährstoffbedarf"
+                v-model="searchResult.data.tipps"
+                name="tipps"
+                placeholder="Tipps"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <label for="healthBenefits">Gesundheitsvorteile</label>
+              <textarea
+                v-model="searchResult.data.healthBenefits"
+                name="healthBenefits"
+                placeholder="Gesundheitsvorteile"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <label for="warning">Achtung!</label>
+              <textarea
+                v-model="searchResult.data.warning"
+                name="warning"
+                placeholder="Achtung!"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <label for="facts">Fakten</label>
+              <textarea
+                v-model="searchResult.data.facts"
+                name="facts"
+                placeholder="Fakten"
                 cols="38"
                 rows="5"
               ></textarea>
