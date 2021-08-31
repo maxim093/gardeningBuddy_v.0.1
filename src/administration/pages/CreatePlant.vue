@@ -7,12 +7,15 @@
         <base-input-field v-model="searchInput" label="Name"></base-input-field>
         <base-button class="Btn--pink">Suchen</base-button>
         <base-button @click="editPlant" class="Btn--green" type="button">Speichern</base-button>
+        <base-button @click="addNewPlant = !addNewPlant" class="Btn--white" type="button"
+          >Neue Pflanzen anlegen</base-button
+        >
       </form>
     </div>
 
     <!-- Plant data -->
     <div class="PlantEditor__main">
-      <div v-show="!addNewDamage" class="PlantEditor__data">
+      <div v-show="!addNewDamage && !addNewPlant" class="PlantEditor__data">
         <div class="PlantEditor__data__general" v-show="searchResult.id !== 0">
           <div class="PlantEditor__searchResultWrapper">
             <form class="PlantEditor__searchResultEntry" @click="editPlant">
@@ -20,7 +23,7 @@
               <textarea
                 v-model="searchResult.data.general"
                 name="general"
-                label="Erklärung"
+                placeholder="Erklärung"
                 cols="38"
                 rows="5"
               ></textarea>
@@ -41,52 +44,86 @@
                 name="location"
                 label="Standort"
               ></base-input-field>
-              <base-input-field v-model="searchResult.data.care" name="care" label="Pflege"></base-input-field>
-              <base-input-field v-model="searchResult.data.culture" name="culture" label="Kultur"></base-input-field>
-              <base-input-field v-model="searchResult.data.facts" name="facts" label="Fakten"></base-input-field>
+              <base-input-field v-model="searchResult.data.ground" name="ground" label="Boden"></base-input-field>
               <base-input-field
-                v-model="searchResult.data.healthBenefits"
-                name="healthBenefits"
-                label="Health benefits"
-              ></base-input-field>
-              <base-input-field v-model="searchResult.data.warning" name="warning" label="Achtung!"></base-input-field>
-              <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.wintering"
-                name="wintering"
-                label="Überwinterung"
+                v-model="searchResult.data.insectFriendly"
+                name="insectFriendly"
+                label="Insektenfreundlich"
               ></base-input-field>
               <base-input-field
                 v-model="searchResult.data.seedType"
                 name="seedType"
                 label="Samentyp(hell/dunkelkeimer)"
               ></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.nutritionalNeeds"
-                name="nutritionalNeeds"
-                label="Fruchtfolge/Nährstoffbedarf"
-              ></base-input-field>
-              <base-input-field
-                v-model="searchResult.data.insectFriendly"
-                name="insectFriendly"
-                label="Insektenfreundlich"
-              ></base-input-field>
-
+              <base-input-field v-model="searchResult.data.heyday" name="heyday" label="Blütezeit"></base-input-field>
               <base-input-field
                 v-model="searchResult.data.category"
                 name="category"
                 label="Kategorie"
               ></base-input-field>
-            </form>
-          </div>
-
-          <!-- Plant Damage Entry -->
-          <div class="PlantEditor__data__currentDamage">
-            <h2>Ausgewähltes Schadbild</h2>
-            <form class="PlantEditor__addDamageEntry">
-              <base-input-field v-model="currentDamage.name" label="Schadbild"></base-input-field>
-              <textarea v-model="currentDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
-              <textarea v-model="currentDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
+              <textarea
+                v-model="searchResult.data.watering"
+                name="watering"
+                placeholder="Wasserbedarf"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.fertilization"
+                name="fertilization"
+                placeholder="Düngung"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.culture"
+                name="culture"
+                placeholder="Kultur"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.facts"
+                name="facts"
+                placeholder="Fakten"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.harvest"
+                name="harvest"
+                placeholder="Ernte"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.healthBenefits"
+                name="healthBenefits"
+                placeholder="Gesundheitsvorteile"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.warning"
+                name="warning"
+                placeholder="Achtung!"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.wintering"
+                name="wintering"
+                placeholder="Überwinterung"
+                cols="38"
+                rows="5"
+              ></textarea>
+              <textarea
+                v-model="searchResult.data.nutritionalNeeds"
+                name="nutritionalNeeds"
+                placeholder="Fruchtfolge/Nährstoffbedarf"
+                cols="38"
+                rows="5"
+              ></textarea>
             </form>
           </div>
         </div>
@@ -103,6 +140,16 @@
             </base-button>
             <h1>{{ damage.name }}</h1>
           </div>
+
+          <!-- Plant Damage Entry -->
+          <div v-if="currentDamage.name" class="PlantEditor__data__currentDamage">
+            <h2>Ausgewähltes Schadbild</h2>
+            <form class="PlantEditor__addDamageEntry">
+              <base-input-field v-model="currentDamage.name" label="Schadbild"></base-input-field>
+              <textarea v-model="currentDamage.desc" name="desc" placeholder="Beschreibung" rows="5"></textarea>
+              <textarea v-model="currentDamage.tipps" name="tipps" placeholder="Tipps" rows="5"></textarea>
+            </form>
+          </div>
         </div>
         <div v-show="searchResult.id !== 0" class="PlantEditor__showAddDamageWrapper">
           <base-button @click="addNewDamage = !addNewDamage"><base-icon name="add" size="large" /> </base-button>
@@ -118,6 +165,15 @@
           <base-button class="Btn--green" type="submit">Speichern</base-button>
         </form>
         <base-button @click="addNewDamage = !addDamage" class="Btn--pink" type="submit">Zurück</base-button>
+      </div>
+
+      <div class="PlantEditor__addNewPlant" v-if="addNewPlant">
+        <h1>Neue Pflanze anlegen</h1>
+        <form @submit.prevent="addPlant">
+          <base-input-field v-model="newPlant.name" label="Name"></base-input-field>
+          <base-input-field v-model="newPlant.category" label="Kategorie"></base-input-field>
+          <base-button class="Btn--pink" type="submit">Speichern</base-button>
+        </form>
       </div>
     </div>
   </div>
@@ -137,8 +193,14 @@ export default {
   },
   data() {
     return {
+      newPlant: {
+        name: "",
+        category: "",
+        damage: [{ desc: "", name: "", tipps: "" }],
+      },
       searchInput: "",
       addNewDamage: false,
+      addNewPlant: false,
       newDamage: {
         desc: "",
         name: "",
@@ -154,15 +216,8 @@ export default {
   methods: {
     // add new plant to the database
     addPlant() {
-      db.collection(this.species.toLowerCase())
-        .add({
-          Name: this.name,
-          Schadbilder: {
-            Name: this.pest,
-            Erklärung: this.description,
-            Tipps: this.tipps,
-          },
-        })
+      db.collection("plants")
+        .add(this.newPlant)
         .then((docRef) => {
           console.log("Document written with ID: ", docRef.id);
         })
@@ -173,6 +228,7 @@ export default {
     // search for specific plant
     // currently return only one result
     searchPlant() {
+      this.addNewPlant = false;
       db.collection("plants")
         .where(`name`, "==", this.searchInput)
         .get()
@@ -272,7 +328,6 @@ export default {
 
   .Label {
     color: #000;
-    font-weight: 800;
   }
 
   textarea {
@@ -363,6 +418,7 @@ export default {
     &__currentDamage {
       width: min-content;
       cursor: pointer;
+      margin-left: 50px;
 
       h2 {
         margin-top: 0;
@@ -397,6 +453,10 @@ export default {
         pointer-events: none;
       }
     }
+  }
+
+  &__addNewPlant {
+    margin-top: 10%;
   }
 }
 </style>
