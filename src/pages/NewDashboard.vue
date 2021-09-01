@@ -3,9 +3,10 @@
     <burger-menu @menuClicked="openMenu"></burger-menu>
     <SideBar />
     <weather-box></weather-box>
-    <info-box></info-box>
+    <info-box :plantData="plant"></info-box>
     <raised-bed></raised-bed>
-    <!-- <img src="../assets/tomato.png" /> -->
+    <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
+    <img class="background" src="../assets/gartenKumpel/Gardenbed.png" />
   </div>
 </template>
 
@@ -19,11 +20,16 @@ import InfoBox from "../components/molecules/InfoBox.vue";
 
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
+import { db } from "@/main";
+
 import gsap from "gsap";
 
 const TL = gsap.timeline();
 
 export default {
+  mounted() {
+    this.searchPlant();
+  },
   components: {
     SideBar,
     BurgerMenu,
@@ -34,6 +40,10 @@ export default {
   data() {
     return {
       choosenOption: null,
+      plant: {
+        data: {},
+        id: 0,
+      },
     };
   },
   methods: {
@@ -44,6 +54,25 @@ export default {
       } else {
         TL.fromTo(".Dashboard-Sidebar", { x: 0, autoAlpha: 1 }, { x: -100, autoAlpha: 0, duration: 1 });
       }
+    },
+    searchPlant() {
+      this.addNewPlant = false;
+      db.collection("plants")
+        .where(`name`, "==", "Artischocke")
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            console.log("hey");
+            // this.addPlant();
+          }
+          querySnapshot.forEach((doc) => {
+            this.plant.data = doc.data();
+            this.plant.id = doc.id;
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
     },
   },
 };
@@ -61,6 +90,14 @@ export default {
 
   .BurgerMenu {
     margin-left: auto;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100vh;
+    height: 100%;
   }
 }
 </style>

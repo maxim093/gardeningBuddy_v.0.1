@@ -1,6 +1,6 @@
 <template>
   <div class="Weather-wrapper">
-    <div class="Weather--dayEntry active" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+    <div class="Weather--dayEntry active">
       <div class="dayEntry--date">
         <span>Di, </span>
         <span>21.06.20</span>
@@ -10,7 +10,7 @@
         <span>23 &#176;</span>
       </div>
     </div>
-    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+    <div class="Weather--dayEntry">
       <div class="dayEntry--date">
         <span>Di, </span>
         <span>21.06.20</span>
@@ -20,7 +20,7 @@
         <span>23 &#176;</span>
       </div>
     </div>
-    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+    <div class="Weather--dayEntry">
       <div class="dayEntry--date">
         <span>Di, </span>
         <span>21.06.20</span>
@@ -30,7 +30,7 @@
         <span>23 &#176;</span>
       </div>
     </div>
-    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+    <div class="Weather--dayEntry">
       <div class="dayEntry--date">
         <span>Di, </span>
         <span>21.06.20</span>
@@ -40,7 +40,7 @@
         <span>23 &#176;</span>
       </div>
     </div>
-    <div class="Weather--dayEntry" @mouseover="setActive($event, true)" @mouseleave="setActive($event, false)">
+    <div class="Weather--dayEntry">
       <div class="dayEntry--date">
         <span>Di, </span>
         <span>21.06.20</span>
