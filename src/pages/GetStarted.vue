@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 import raisedBed from "../assets/raisedBedNormal/raisedBed1.png";
 // import bed2 from "../assets/raisedBedNormal/lowPolyBed.png";
 
@@ -54,6 +56,14 @@ export default {
   beforeUpdate() {
     this.itemRefs = [];
   },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+        console.log(this.user);
+      }
+    });
+  },
   data() {
     return {
       options: [
@@ -64,6 +74,7 @@ export default {
       optionIsChosen: false,
       show: true,
       itemRefs: [],
+      user: null,
     };
   },
   methods: {

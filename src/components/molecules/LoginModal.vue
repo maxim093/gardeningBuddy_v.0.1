@@ -2,30 +2,18 @@
   <transition name="Modal-fade">
     <div class="Modal-backdrop">
       <div class="Modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
-        <header class="Modal-header" id="modalTitle">
-          <slot name="header">Cool title!</slot>
-          <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
-        </header>
-
-        <section class="Modal-body" id="modalDescription">
-          <slot name="body">Default body!</slot>
-        </section>
-
-        <footer class="Modal-footer">
-          <slot name="footer"></slot>
-          <base-button class="Btn--white" @click="close" aria-label="Close modal">Zurück</base-button>
-        </footer>
+        <Login />
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import BaseButton from "../atoms/BaseButton";
+import Login from "../../pages/Login.vue";
 export default {
   name: "ClassicModal",
   components: {
-    BaseButton,
+    Login,
   },
   methods: {
     close() {

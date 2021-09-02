@@ -7,40 +7,19 @@
       <router-link to="/Register" class="Header-Nav-Entry">Registrieren</router-link>
       <button @click="showModal" class="Header-Nav-Entry Login">Einloggen</button>
     </ul>
-    <classic-modal v-show="isModalVisible" @close="closeModal">
-      <template v-slot:header>
-        <base-headline>
-          User Login
-        </base-headline>
-      </template>
-
-      <template v-slot:body>
-        <base-input-field variant="Input--green" type="email">Email</base-input-field>
-        <base-input-field variant="Input--green" type="password">Passwort</base-input-field>
-      </template>
-
-      <template v-slot:footer>
-        <base-button class="Btn--green">Login</base-button>
-      </template>
-    </classic-modal>
+    <login-modal v-show="isModalVisible" @close="closeModal"> </login-modal>
   </div>
 </template>
 
 <script>
 import BaseLogo from "../atoms/BaseLogo";
-import ClassicModal from "../molecules/ClassicModal";
-import BaseHeadline from "../atoms/BaseHeadline";
-import BaseInputField from "../atoms/BaseInputField";
-import BaseButton from "../atoms/BaseButton.vue";
+import LoginModal from "../molecules/LoginModal";
 
 export default {
   name: "TheHeader",
   components: {
     BaseLogo,
-    ClassicModal,
-    BaseHeadline,
-    BaseInputField,
-    BaseButton,
+    LoginModal,
   },
   data() {
     return {
@@ -159,11 +138,5 @@ export default {
     font-family: $font-MS;
     font-weight: 400;
   }
-}
-
-.Header .Modal {
-  position: absolute;
-  top: 10%;
-  right: 5%;
 }
 </style>
