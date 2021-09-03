@@ -64,6 +64,15 @@ export default {
         .signInWithEmailAndPassword(this.user.email, this.user.password)
         .then((userCredential) => {
           var user = userCredential.user;
+          if (user) {
+            firebase
+              .firestore()
+              .doc(`/users/${user.uid}`)
+              .get()
+              .then((userProfileSnapshot) => {
+                console.log(userProfileSnapshot.data().roles);
+              });
+          }
           console.log(user.uid);
         })
         .catch((error) => {

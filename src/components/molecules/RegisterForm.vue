@@ -6,6 +6,13 @@
     <base-input-field label="Email" variant="Input--pink" type="text" @input="getEmail"></base-input-field>
     <base-input-field label="Anzeigename" variant="Input--pink" type="text" @input="getName"></base-input-field>
     <base-input-field label="Passwort" variant="Input--pink" type="password" @input="getPW"></base-input-field>
+    <div class="RegisterForm__checkbox">
+      <span @click="toggleChecked"
+        >Hiermit aktzepiere ich die Verarbeitung meiner Daten. Ich habe verstanden das blabla blub okay :)</span
+      >
+      <base-checkbox ref="checkbox" />
+    </div>
+
     <base-button class="Btn--green">Registrieren</base-button>
   </form>
 </template>
@@ -13,11 +20,13 @@
 import BaseInputField from "../atoms/BaseInputField";
 import BaseButton from "../atoms/BaseButton";
 import BaseHeadline from "../atoms/BaseHeadline";
+import BaseCheckbox from "../atoms/BaseCheckbox";
 export default {
   name: "ClassicForm",
   components: {
     BaseInputField,
     BaseButton,
+    BaseCheckbox,
     BaseHeadline,
   },
   emits: ["submit"],
@@ -43,6 +52,10 @@ export default {
     getPW(e) {
       this.user.pw = e.target.value;
     },
+    toggleChecked() {
+      const element = document.querySelector(".BaseCheckbox__input");
+      element.checked = !element.checked;
+    },
   },
 };
 </script>
@@ -56,20 +69,38 @@ export default {
   border-radius: 15px;
   width: 500px;
   margin: 100px auto;
-  padding: 50px 0;
+  padding: 50px 40px;
   z-index: 4;
   position: relative;
   background: #fff;
+
+  .RegisterForm__checkbox {
+    display: flex;
+    justify-content: center;
+    width: 410px;
+    margin-top: 20px;
+
+    & > span {
+      width: 90%;
+      order: 2;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .BaseCheckbox {
+      margin-right: 10px;
+    }
+  }
 
   & .Input-Wrapper {
     margin: 20px 0;
 
     & .Input {
-      width: 400px;
       font-size: 18px;
       line-height: 45px;
       height: 45px;
       font-family: $font-MS;
+      width: 300px;
     }
 
     & .Input[type="password"] {
@@ -85,7 +116,7 @@ export default {
   }
 
   .Btn {
-    margin-top: 20px;
+    margin-top: 50px;
   }
 
   h1 > span {

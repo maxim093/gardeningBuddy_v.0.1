@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       Background,
+      role: "customer",
     };
   },
   components: {
@@ -32,8 +33,14 @@ export default {
       firebase
         .auth()
         .createUserWithEmailAndPassword(value.email, value.pw)
-        .then(() => {
+        .then((credentials) => {
           const user = firebase.auth().currentUser;
+          firebase
+            .firestore()
+            .collection("users")
+            .doc(credentials.user.uid)
+            .set({ email: value.email, role: this.role });
+
           user.updateProfile({
             displayName: value.name,
           });
