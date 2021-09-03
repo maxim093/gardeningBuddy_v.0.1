@@ -1,11 +1,16 @@
 <template>
+  <error-message />
   <router-view />
 </template>
 
 <script>
 import firebase from "firebase";
+import ErrorMessage from "./components/layout/ErrorMessage.vue";
 
 export default {
+  components: {
+    ErrorMessage,
+  },
   data() {
     return {
       data: "",

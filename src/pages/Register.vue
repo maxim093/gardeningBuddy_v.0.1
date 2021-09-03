@@ -46,7 +46,7 @@ export default {
           });
           this.$router.push("/Dashboard");
         })
-        .catch((err) => console.log(err.message));
+        .catch((err) => this.$store.dispatch("setError", err.message));
     },
   },
 };
