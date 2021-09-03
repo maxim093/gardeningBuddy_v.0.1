@@ -3,15 +3,9 @@
     <base-headline tag="h1" styling="h2">
       <slot name="header"></slot>
     </base-headline>
-    <base-input-field variant="Input--pink" type="text" @input="getEmail"
-      >Email</base-input-field
-    >
-    <base-input-field variant="Input--pink" type="password" @input="getPW"
-      >Passwort</base-input-field
-    >
-    <base-input-field variant="Input--pink" type="password" @input="getPWCheck"
-      >Passwort wiederholen</base-input-field
-    >
+    <base-input-field label="Email" variant="Input--pink" type="text" @input="getEmail"></base-input-field>
+    <base-input-field label="Anzeigename" variant="Input--pink" type="text" @input="getName"></base-input-field>
+    <base-input-field label="Passwort" variant="Input--pink" type="password" @input="getPW"></base-input-field>
     <base-button class="Btn--green">Registrieren</base-button>
   </form>
 </template>
@@ -32,7 +26,6 @@ export default {
       user: {
         email: "",
         pw: "",
-        pwCheck: "",
       },
       inputValue: "",
     };
@@ -44,11 +37,11 @@ export default {
     getEmail(e) {
       this.user.email = e.target.value;
     },
+    getName(e) {
+      this.user.name = e.target.value;
+    },
     getPW(e) {
       this.user.pw = e.target.value;
-    },
-    getPWCheck(e) {
-      this.user.pwCheck = e.target.value;
     },
   },
 };
@@ -61,7 +54,7 @@ export default {
   align-items: center;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-  width: 30%;
+  width: 500px;
   margin: 100px auto;
   padding: 50px 0;
   z-index: 4;

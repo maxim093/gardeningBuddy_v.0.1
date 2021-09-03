@@ -1,7 +1,11 @@
 <template>
   <transition name="Modal-fade">
-    <div class="Modal-backdrop">
+    <div class="Modal__backdrop" @click="close">
       <div class="Modal" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+        <button class="Modal__close" @click="close">
+          <base-icon name="close-outline" size="large"></base-icon>
+        </button>
+
         <Login />
       </div>
     </div>
@@ -10,13 +14,17 @@
 
 <script>
 import Login from "../../pages/Login.vue";
+import BaseIcon from "../atoms/BaseIcon.vue";
+
 export default {
   name: "ClassicModal",
   components: {
     Login,
+    BaseIcon,
   },
   methods: {
-    close() {
+    close(e) {
+      if (e.target.closest(".Modal") && !e.target.closest(".Modal__close")) return;
       this.$emit("close");
     },
   },
@@ -33,8 +41,9 @@ export default {
   position: relative;
   border-radius: 8px;
   width: 400px;
+  padding: 40px;
 
-  &-backdrop {
+  &__backdrop {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -46,42 +55,14 @@ export default {
     align-items: center;
   }
 
-  &-header,
-  &-footer {
-    display: flex;
+  &__close {
+    background: none;
+    border: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
   }
-
-  &-header {
-    position: relative;
-    border-bottom: 1px solid #eeeeee;
-    color: #4aae9b;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  &-footer {
-    padding: 15px;
-    border-top: 1px solid #eeeeee;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-  &-body {
-    position: relative;
-    padding: 20px 10px;
-  }
-}
-
-.btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #4aae9b;
-  background: transparent;
 }
 
 .Modal-fade-enter,
