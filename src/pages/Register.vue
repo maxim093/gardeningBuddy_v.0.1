@@ -30,6 +30,7 @@ export default {
   },
   methods: {
     registerUser(value) {
+      const role = this.role;
       firebase
         .auth()
         .createUserWithEmailAndPassword(value.email, value.pw)
@@ -39,14 +40,41 @@ export default {
             .firestore()
             .collection("users")
             .doc(credentials.user.uid)
-            .set({ email: value.email, role: this.role });
+            .set({ name: value.email, roles: [role] })
+            .then(() => {
+              user.updateProfile({
+                displayName: value.name,
+              });
+            })
+            .then(() => {
+              this.$router.push("/newDashboard");
 
-          user.updateProfile({
-            displayName: value.name,
-          });
-          this.$router.push("/Dashboard");
+              firebase
+                .firestore()
+                .collection("users")
+                .doc(credentials.user.uid)
+                .get()
+                .then((querySnapshot) => {
+                  if (querySnapshot.empty) {
+                    console.error("ERROR");
+                  }
+
+                  this.$store.dispatch("loginUser", {
+                    id: user.uid,
+                    data: {
+                      displayName: value.name,
+                      email: user.email,
+                      emailVerified: user.emailVerified,
+                      role: querySnapshot.data().roles,
+                    },
+                  });
+                })
+                .catch((error) => {
+                  this.$store.dispatch("setError", error);
+                });
+            });
         })
-        .catch((err) => this.$store.dispatch("setError", err.message));
+        .catch((err) => this.$store.dispatch("setError", err));
     },
   },
 };

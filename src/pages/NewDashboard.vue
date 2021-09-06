@@ -4,7 +4,7 @@
     <SideBar />
     <weather-box></weather-box>
     <info-box :plantData="plant"></info-box>
-    <raised-bed></raised-bed>
+    <raised-bed @clicked="getBed"></raised-bed>
     <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
     <img class="background" src="../assets/gartenKumpel/Gardenbed.png" />
   </div>
@@ -13,11 +13,8 @@
 <script>
 import SideBar from "../components/molecules/Dashboard/DashboardSidebar.vue";
 import BurgerMenu from "../components/molecules/BurgerMenu.vue";
-
 import WeatherBox from "../components/molecules/WeatherWidget.vue";
-
 import InfoBox from "../components/molecules/InfoBox.vue";
-
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
 import { db } from "@/main";
@@ -27,8 +24,11 @@ import gsap from "gsap";
 const TL = gsap.timeline();
 
 export default {
+  beforeMount() {
+    this.user = this.$store.getters.GET_USER;
+  },
   mounted() {
-    this.searchPlant();
+    this.getBed();
   },
   components: {
     SideBar,
@@ -40,10 +40,12 @@ export default {
   data() {
     return {
       choosenOption: null,
+      bed: {},
       plant: {
         data: {},
         id: 0,
       },
+      user: {},
     };
   },
   methods: {
@@ -58,12 +60,11 @@ export default {
     searchPlant() {
       this.addNewPlant = false;
       db.collection("plants")
-        .where(`name`, "==", "Artischocke")
+        .where(`name`, "==", this.choosenOption)
         .get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
-            console.log("hey");
-            // this.addPlant();
+            console.log("ERROR");
           }
           querySnapshot.forEach((doc) => {
             this.plant.data = doc.data();
@@ -71,8 +72,31 @@ export default {
           });
         })
         .catch((error) => {
-          console.log("Error getting documents: ", error);
+          this.$store.dispatch("setError", error);
         });
+    },
+    getBed(value) {
+      db.collection("beds")
+        .doc(this.user.id)
+        .get()
+        .then((querySnapshot) => {
+          if (querySnapshot.empty) {
+            console.log("ERROR");
+          }
+          this.bed = querySnapshot.data();
+        })
+        .catch((error) => {
+          this.$store.dispatch("setError", error);
+        });
+
+      const row = this.bed.plants[value.row];
+      const col = value.col - 1;
+
+      this.choosenOption = row[col];
+      if (this.choosenOption !== null) {
+        this.searchPlant();
+        console.log(this.plant);
+      }
     },
   },
 };

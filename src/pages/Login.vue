@@ -67,18 +67,26 @@ export default {
           if (user) {
             firebase
               .firestore()
-              .doc(`/users/${user.uid}`)
+              .collection("users")
+              .doc(user.uid)
               .get()
               .then((userProfileSnapshot) => {
-                console.log(userProfileSnapshot.data().roles);
+                const { userRole, userName } = userProfileSnapshot.data();
+                this.$store.dispatch("loginUser", {
+                  id: user.uid,
+                  data: {
+                    displayName: user.displayName,
+                    email: user.email,
+                    emailVerified: user.emailVerified,
+                    role: userRole,
+                    name: userName,
+                  },
+                });
               });
           }
-          console.log(user.uid);
         })
         .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          this.$store.dispatch("setError", error);
         });
     },
   },

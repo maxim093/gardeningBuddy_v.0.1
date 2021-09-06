@@ -1,8 +1,8 @@
 <template>
   <div class="Wrapper">
     <div class="RaisedBed">
-      <div v-for="index in 4" :key="index" class="row">
-        <button v-for="btnIndex in 6" :key="btnIndex" class="place"></button>
+      <div v-for="index in 4" :key="index" :id="index" class="row">
+        <button @click="clicked($event)" v-for="btnIndex in 6" :key="btnIndex" :id="btnIndex" class="place"></button>
       </div>
     </div>
   </div>
@@ -15,6 +15,17 @@ export default {
       x: 9,
       y: 4,
     };
+  },
+  methods: {
+    clicked(value) {
+      const row = value.path[1].id;
+      const col = value.path[0].id;
+      const position = {
+        row,
+        col,
+      };
+      this.$emit("clicked", position);
+    },
   },
 };
 </script>
