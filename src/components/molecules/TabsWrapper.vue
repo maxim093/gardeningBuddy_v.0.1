@@ -42,10 +42,11 @@ export default {
   list-style: none;
   padding: 0;
   display: flex;
+  justify-content: center;
 }
 
 .tabs__header li {
-  width: 80px;
+  width: 200px;
   text-align: center;
   padding: 10px 20px;
   margin-right: 10px;
@@ -54,6 +55,10 @@ export default {
   cursor: pointer;
   transition: 0.4s all ease-out;
   box-shadow: 0 1px 0px 5px rgba(0, 0, 0, 0.05);
+}
+
+.tabs__header li:last-child {
+  margin-right: 5px;
 }
 
 .tabs__header li.selected {

@@ -93,14 +93,8 @@
                 cols="61"
                 rows="10"
               ></textarea>
-              <label for="harvest">Ernte</label>
-              <textarea
-                v-model="searchResult.data.harvest"
-                name="harvest"
-                placeholder="Ernte"
-                cols="61"
-                rows="10"
-              ></textarea>
+              <base-input-field v-model="searchResult.data.harvest" name="harvest" label="Ernte"></base-input-field>
+              <base-input-field v-model="searchResult.data.sowing" name="harvest" label="Aussaat"></base-input-field>
               <label for="wintering">Überwinterung</label>
               <textarea
                 v-model="searchResult.data.wintering"

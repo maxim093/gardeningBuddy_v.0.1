@@ -18,8 +18,6 @@ export default {
 
 <style lang="scss" scoped>
 .tab-content {
-  // min-height: auto;
-  padding: 20px;
   border-radius: 5px;
   // box-shadow: 0 3px 5px 5px rgba(0, 0, 0, 0.05);
 }

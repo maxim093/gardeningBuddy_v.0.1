@@ -3,10 +3,10 @@
     <burger-menu @menuClicked="openMenu"></burger-menu>
     <SideBar />
     <weather-box></weather-box>
-    <info-box :plantData="plant"></info-box>
+
+    <info-box v-show="plant" :plantData="plant"></info-box>
     <raised-bed @clicked="getBed"></raised-bed>
     <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
-    <img class="background" src="../assets/gartenKumpel/Gardenbed.png" />
   </div>
 </template>
 
@@ -70,7 +70,9 @@ export default {
             this.plant.data = doc.data();
             this.plant.id = doc.id;
           });
+          console.log(this.plant);
         })
+        .then(() => {})
         .catch((error) => {
           this.$store.dispatch("setError", error);
         });
@@ -82,21 +84,21 @@ export default {
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
             console.log("ERROR");
+          } else {
+            this.bed = querySnapshot.data();
+
+            const row = this.bed.plants[value.row];
+            const col = value.col - 1;
+
+            this.choosenOption = row[col];
+            if (this.choosenOption !== null) {
+              this.searchPlant();
+            }
           }
-          this.bed = querySnapshot.data();
         })
         .catch((error) => {
           this.$store.dispatch("setError", error);
         });
-
-      const row = this.bed.plants[value.row];
-      const col = value.col - 1;
-
-      this.choosenOption = row[col];
-      if (this.choosenOption !== null) {
-        this.searchPlant();
-        console.log(this.plant);
-      }
     },
   },
 };
@@ -106,11 +108,8 @@ export default {
 .NewDashboard {
   width: 100vw;
   height: 100vh;
-  background: palegreen;
-
-  h1 {
-    margin: 0;
-  }
+  // background: palegreen;
+  background: url("../assets/gartenKumpel/Gardenbed.png") center / 70%;
 
   .BurgerMenu {
     margin-left: auto;
@@ -122,6 +121,11 @@ export default {
     left: 0;
     border-radius: 100vh;
     height: 100%;
+  }
+
+  .InfoBox {
+    margin-top: 30px;
+    padding: 30px;
   }
 }
 </style>

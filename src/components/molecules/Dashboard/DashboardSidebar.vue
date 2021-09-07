@@ -28,7 +28,9 @@ export default {
   visibility: hidden;
   z-index: 9999;
   position: absolute;
-  top: 30%;
+  top: 5%;
+  background: #fff;
+  border-radius: 0 10px 10px 0;
 
   &-MainNav {
     list-style: none;
