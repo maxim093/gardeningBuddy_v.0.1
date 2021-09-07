@@ -4,7 +4,8 @@
     <SideBar />
     <weather-box></weather-box>
 
-    <info-box v-show="plant" :plantData="plant"></info-box>
+    <info-box v-show="plant && !addNewPlant" :plantData="plant"></info-box>
+    <add-plant-box v-if="addNewPlant"></add-plant-box>
     <raised-bed @clicked="getBed"></raised-bed>
     <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
   </div>
@@ -15,6 +16,7 @@ import SideBar from "../components/molecules/Dashboard/DashboardSidebar.vue";
 import BurgerMenu from "../components/molecules/BurgerMenu.vue";
 import WeatherBox from "../components/molecules/WeatherWidget.vue";
 import InfoBox from "../components/molecules/InfoBox.vue";
+import AddPlantBox from "../components/molecules/AddPlantBox.vue";
 import RaisedBed from "../components/molecules/RaisedBed/NormalRaisedBed.vue";
 
 import { db } from "@/main";
@@ -36,10 +38,12 @@ export default {
     InfoBox,
     WeatherBox,
     RaisedBed,
+    AddPlantBox,
   },
   data() {
     return {
       choosenOption: null,
+      addNewPlant: false,
       bed: {},
       plant: {
         data: {},
@@ -63,8 +67,9 @@ export default {
         .where(`name`, "==", this.choosenOption)
         .get()
         .then((querySnapshot) => {
+          console.log(querySnapshot);
           if (querySnapshot.empty) {
-            console.log("ERROR");
+            this.addPlant();
           }
           querySnapshot.forEach((doc) => {
             this.plant.data = doc.data();
@@ -83,7 +88,7 @@ export default {
         .get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {
-            console.log("ERROR");
+            console.log("NO BED");
           } else {
             this.bed = querySnapshot.data();
 
@@ -99,6 +104,9 @@ export default {
         .catch((error) => {
           this.$store.dispatch("setError", error);
         });
+    },
+    addPlant() {
+      this.addNewPlant = true;
     },
   },
 };
