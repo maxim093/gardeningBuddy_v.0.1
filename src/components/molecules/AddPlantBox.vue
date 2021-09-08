@@ -1,22 +1,71 @@
 <template>
   <div class="AddPlantBox">
-    <h1>Lass uns pflanzen</h1>
+    <h2>Ganz schön leer hier 🙁 Lass uns etwas pflanzen!</h2>
 
-    <h2>Unsere Vorschläge</h2>
-    <image-slider class="Swiper2"></image-slider>
+    <h3>Unsere Vorschläge</h3>
+    <swiper v-if="searchedPlant" @clicked="searchedPlant"></swiper>
+    <swiper @clicked="getPlant"></swiper>
 
-    <base-input-field></base-input-field>
+    <h3>Oder Suche nach etwas bestimmetem</h3>
+    <div class="AddPlantBox__searchWrapper">
+      <base-input-field v-model="searchedPlant" label="Pflanze"></base-input-field>
+      <base-button @click="searchPlant" class="Btn--green">Suchen</base-button>
+      <base-button @click="searchedPlant = ''" class="Btn--pink">Zurück</base-button>
+    </div>
+
+    <info-box-small :plant="plant"></info-box-small>
   </div>
 </template>
 
 <script>
+import BaseButton from "../atoms/BaseButton.vue";
 import BaseInputField from "../atoms/BaseInputField.vue";
-import ImageSlider from "../../components/libraries/ImageSlider";
+import InfoBoxSmall from "./InfoBoxSmall.vue";
+import Swiper from "./Swiper.vue";
+
+import { db } from "@/main";
 
 export default {
-  components: { BaseInputField, ImageSlider },
+  components: { BaseInputField, Swiper, BaseButton, InfoBoxSmall },
+  data() {
+    return {
+      plant: "",
+      searchedPlant: "",
+      plantInfo: {
+        data: {},
+        id: 0,
+      },
+    };
+  },
+  methods: {
+    getPlant(value) {
+      this.plant = value;
+    },
+    searchPlant() {
+      db.collection("plants")
+        .where(`name`, "==", this.searchedPlant)
+        .get()
+        .then((querySnapshot) => {
+          console.log(querySnapshot);
+          if (querySnapshot.empty) {
+            console.log("ERROR");
+          }
+          querySnapshot.forEach((doc) => {
+            this.plantInfo.data = doc.data();
+            this.plantInfo.id = doc.id;
+          });
+
+          console.log(this.plantInfo);
+        })
+        .then(() => {})
+        .catch((error) => {
+          this.$store.dispatch("setError", error);
+        });
+    },
+  },
 };
 </script>
+,
 
 <style lang="scss">
 .AddPlantBox {
@@ -34,6 +83,25 @@ export default {
   margin-top: 30px;
   padding: 30px;
   text-align: left;
+
+  h3 {
+    margin-bottom: 0;
+    margin-top: 30px;
+  }
+
+  &__searchWrapper {
+    display: flex;
+    align-items: center;
+
+    .Input {
+      height: 48px;
+    }
+
+    .Btn {
+      height: 50px;
+      margin-left: 10px;
+    }
+  }
 }
 
 .Swiper2 {

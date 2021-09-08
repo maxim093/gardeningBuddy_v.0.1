@@ -30,7 +30,7 @@ export default {
     this.user = this.$store.getters.GET_USER;
   },
   mounted() {
-    this.getBed();
+    this.getBed({ row: "2", col: "4" });
   },
   components: {
     SideBar,
@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     openMenu(value) {
-      console.log(value);
       if (value) {
         TL.fromTo(".Dashboard-Sidebar", { x: -100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1 });
       } else {
@@ -67,7 +66,6 @@ export default {
         .where(`name`, "==", this.choosenOption)
         .get()
         .then((querySnapshot) => {
-          console.log(querySnapshot);
           if (querySnapshot.empty) {
             this.addPlant();
           }
@@ -75,7 +73,6 @@ export default {
             this.plant.data = doc.data();
             this.plant.id = doc.id;
           });
-          console.log(this.plant);
         })
         .then(() => {})
         .catch((error) => {
@@ -90,11 +87,9 @@ export default {
           if (querySnapshot.empty) {
             console.log("NO BED");
           } else {
-            this.bed = querySnapshot.data();
-
+            this.bed = querySnapshot.data().normalRaisedBed[0];
             const row = this.bed.plants[value.row];
             const col = value.col - 1;
-
             this.choosenOption = row[col];
             if (this.choosenOption !== null) {
               this.searchPlant();
@@ -102,6 +97,7 @@ export default {
           }
         })
         .catch((error) => {
+          console.log(error);
           this.$store.dispatch("setError", error);
         });
     },
