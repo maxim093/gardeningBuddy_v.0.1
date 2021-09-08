@@ -10,31 +10,31 @@
   >
     <swiper-slide @click="clicked('Gurke')">
       <p>Gurke</p>
-      <img src="../../assets/test/cucumber.png" alt=""
+      <img src="../../assets/test/gurke.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Tomate')">
       <p>Tomate</p>
-      <img src="../../assets/test/tomato.png" alt=""
+      <img src="../../assets/test/tomate.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Paprika')">
       <p>Paprika</p>
-      <img src="../../assets/test/pepper.png" alt=""
+      <img src="../../assets/test/paprika.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Kartoffel')">
       <p>Kartoffel</p>
-      <img src="../../assets/test/potato.png" alt=""
+      <img src="../../assets/test/kartoffel.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Erdbeere')">
       <p>Erdbeere</p>
-      <img src="../../assets/test/strawberry.png" alt=""
+      <img src="../../assets/test/erdbeere.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Gurke')">
       <p>Gurke</p>
-      <img src="../../assets/test/cucumber.png" alt=""
+      <img src="../../assets/test/gurke.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Tomate')"
       ><p>Tomate</p>
-      <img src="../../assets/test/tomato.png" alt=""
+      <img src="../../assets/test/tomate.png" alt=""
     /></swiper-slide>
     <swiper-slide @click="clicked('Blumenkohl')">
       <p>Blumenkohl</p>

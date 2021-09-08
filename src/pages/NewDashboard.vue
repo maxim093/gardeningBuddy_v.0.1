@@ -63,7 +63,7 @@ export default {
     searchPlant() {
       this.addNewPlant = false;
       db.collection("plants")
-        .where(`name`, "==", this.choosenOption)
+        .where(`name`, "==", this.choosenOption.toLowerCase())
         .get()
         .then((querySnapshot) => {
           if (querySnapshot.empty) {

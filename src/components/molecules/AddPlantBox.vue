@@ -3,15 +3,14 @@
     <h2>Ganz schön leer hier 🙁 Lass uns etwas pflanzen!</h2>
 
     <h3>Unsere Vorschläge</h3>
-    <swiper v-if="searchedPlant" @clicked="searchedPlant"></swiper>
-    <swiper @clicked="getPlant"></swiper>
-
-    <h3>Oder Suche nach etwas bestimmetem</h3>
-    <div class="AddPlantBox__searchWrapper">
-      <base-input-field v-model="searchedPlant" label="Pflanze"></base-input-field>
-      <base-button @click="searchPlant" class="Btn--green">Suchen</base-button>
-      <base-button @click="searchedPlant = ''" class="Btn--pink">Zurück</base-button>
-    </div>
+    <swiper-sec></swiper-sec>
+    <h3>Oder Suche nach etwas Bestimmtem</h3>
+    <!-- SEARCH PLANT -->
+    <form @submit.prevent="searchPlant" class="AddPlantBox__searchWrapper">
+      <base-input-field v-model.trim="searchedPlant" label="Pflanze"></base-input-field>
+      <base-button class="Btn--green">Suchen</base-button>
+    </form>
+    <swiper v-if="plantInfo.id !== 0" @clicked="getClickedOption" :data="plantInfo" />
 
     <info-box-small :plant="plant"></info-box-small>
   </div>
@@ -21,12 +20,13 @@
 import BaseButton from "../atoms/BaseButton.vue";
 import BaseInputField from "../atoms/BaseInputField.vue";
 import InfoBoxSmall from "./InfoBoxSmall.vue";
-import Swiper from "./Swiper.vue";
+import Swiper from "./SwiperMain.vue";
+import SwiperSec from "./Swiper.vue";
 
 import { db } from "@/main";
 
 export default {
-  components: { BaseInputField, Swiper, BaseButton, InfoBoxSmall },
+  components: { BaseInputField, Swiper, SwiperSec, BaseButton, InfoBoxSmall },
   data() {
     return {
       plant: "",
@@ -38,15 +38,14 @@ export default {
     };
   },
   methods: {
-    getPlant(value) {
+    getClickedOption(value) {
       this.plant = value;
     },
     searchPlant() {
       db.collection("plants")
-        .where(`name`, "==", this.searchedPlant)
+        .where(`name`, "==", this.searchedPlant.toLowerCase())
         .get()
         .then((querySnapshot) => {
-          console.log(querySnapshot);
           if (querySnapshot.empty) {
             console.log("ERROR");
           }
@@ -56,6 +55,7 @@ export default {
           });
 
           console.log(this.plantInfo);
+          this.plant = "";
         })
         .then(() => {})
         .catch((error) => {
@@ -102,12 +102,5 @@ export default {
       margin-left: 10px;
     }
   }
-}
-
-.Swiper2 {
-  height: 300px;
-  width: 300px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-  cursor: grab;
 }
 </style>

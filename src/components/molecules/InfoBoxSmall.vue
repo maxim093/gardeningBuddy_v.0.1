@@ -33,7 +33,7 @@ export default {
   methods: {
     searchPlant() {
       db.collection("plants")
-        .where(`name`, "==", this.plant)
+        .where(`name`, "==", this.plant.toLowerCase())
         .get()
         .then((querySnapshot) => {
           console.log(querySnapshot);
@@ -55,7 +55,4 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.InfoBoxSmall {
-}
-</style>
+<style lang="scss"></style>
