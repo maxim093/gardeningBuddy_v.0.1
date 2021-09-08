@@ -26,7 +26,14 @@ export default {
     };
   },
   watch: {
-    plant: function() {
+    plant: function(newValue) {
+      if (newValue.length < 1) {
+        this.plantInfo = {
+          data: {},
+          id: 0,
+        };
+        return;
+      }
       this.searchPlant();
     },
   },
@@ -36,12 +43,10 @@ export default {
         .where(`name`, "==", this.plant.toLowerCase())
         .get()
         .then((querySnapshot) => {
-          console.log(querySnapshot);
           if (querySnapshot.empty) {
             console.log("ERROR");
           }
           querySnapshot.forEach((doc) => {
-            console.log(doc.data());
             this.plantInfo.data = doc.data();
             this.plantInfo.id = doc.id;
           });

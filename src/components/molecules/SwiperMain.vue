@@ -47,7 +47,7 @@ export default {
     },
   },
   updated() {
-    console.log(this.data);
+    console.log("hey", this.data);
   },
 };
 </script>

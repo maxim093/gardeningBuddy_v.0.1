@@ -2,13 +2,18 @@
   <div class="AddPlantBox">
     <h2>Ganz schön leer hier 🙁 Lass uns etwas pflanzen!</h2>
 
-    <h3>Unsere Vorschläge</h3>
-    <swiper-sec></swiper-sec>
-    <h3>Oder Suche nach etwas Bestimmtem</h3>
+    <!-- SUGGESTIONS -->
+    <div v-if="plantInfo.id === 0">
+      <h3>Unsere Vorschläge</h3>
+      <swiper-sec></swiper-sec>
+    </div>
+
     <!-- SEARCH PLANT -->
+    <h3>Oder Suche nach etwas Bestimmtem</h3>
     <form @submit.prevent="searchPlant" class="AddPlantBox__searchWrapper">
       <base-input-field v-model.trim="searchedPlant" label="Pflanze"></base-input-field>
       <base-button class="Btn--green">Suchen</base-button>
+      <base-button v-if="plantInfo.id !== 0" @click="reset" class="Btn--pink">Zeige Vorschläge</base-button>
     </form>
     <swiper v-if="plantInfo.id !== 0" @clicked="getClickedOption" :data="plantInfo" />
 
@@ -30,6 +35,7 @@ export default {
   data() {
     return {
       plant: "",
+      searched: false,
       searchedPlant: "",
       plantInfo: {
         data: {},
@@ -49,6 +55,7 @@ export default {
           if (querySnapshot.empty) {
             console.log("ERROR");
           }
+
           querySnapshot.forEach((doc) => {
             this.plantInfo.data = doc.data();
             this.plantInfo.id = doc.id;
@@ -62,6 +69,14 @@ export default {
           this.$store.dispatch("setError", error);
         });
     },
+    reset() {
+      this.searchedPlant = "";
+      this.plant = "";
+      this.plantInfo = {
+        data: {},
+        id: 0,
+      };
+    },
   },
 };
 </script>
@@ -70,9 +85,7 @@ export default {
 <style lang="scss">
 .AddPlantBox {
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  height: 80vh;
-  // width: 40vw;
-
+  height: 85vh;
   width: 800px;
   margin-left: auto;
   position: relative;
@@ -100,6 +113,7 @@ export default {
     .Btn {
       height: 50px;
       margin-left: 10px;
+      padding: 15px 25px;
     }
   }
 }
