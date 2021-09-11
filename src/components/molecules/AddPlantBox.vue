@@ -5,7 +5,7 @@
     <!-- SUGGESTIONS -->
     <div v-if="plantInfo.id === 0">
       <h3>Unsere Vorschläge</h3>
-      <swiper-sec></swiper-sec>
+      <swiper-sec @clicked="getClickedOption"></swiper-sec>
     </div>
 
     <!-- SEARCH PLANT -->
@@ -17,7 +17,7 @@
     </form>
     <swiper v-if="plantInfo.id !== 0" @clicked="getClickedOption" :data="plantInfo" />
 
-    <info-box-small :plant="plant"></info-box-small>
+    <info-box-small :plant="plant" @savePlant="savePlant"></info-box-small>
   </div>
 </template>
 
@@ -32,6 +32,7 @@ import { db } from "@/main";
 
 export default {
   components: { BaseInputField, Swiper, SwiperSec, BaseButton, InfoBoxSmall },
+  props: ["user", "position"],
   data() {
     return {
       plant: "",
@@ -76,6 +77,13 @@ export default {
         data: {},
         id: 0,
       };
+    },
+    savePlant(value) {
+      this.$store.dispatch("getBeds", { bedType: "normalRaisedBeds" });
+      const bed = this.$store.getters.GET_BED(1);
+      bed[this.position.row][this.position.col - 1] = value;
+
+      this.$store.dispatch("saveBed", { updatedBed: bed, bedType: "normalRaisedBeds", number: 1 });
     },
   },
 };

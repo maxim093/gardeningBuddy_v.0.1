@@ -4,8 +4,8 @@
     <SideBar />
     <weather-box></weather-box>
 
-    <info-box v-show="plant && !addNewPlant" :plantData="plant"></info-box>
-    <add-plant-box v-if="addNewPlant"></add-plant-box>
+    <info-box v-if="plant && !addNewPlant" :plantData="plant"></info-box>
+    <add-plant-box v-if="addNewPlant" :user="user" :position="position"></add-plant-box>
     <raised-bed @clicked="getBed"></raised-bed>
     <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
   </div>
@@ -50,6 +50,7 @@ export default {
         id: 0,
       },
       user: {},
+      position: {},
     };
   },
   methods: {
@@ -61,7 +62,6 @@ export default {
       }
     },
     searchPlant() {
-      this.addNewPlant = false;
       db.collection("plants")
         .where(`name`, "==", this.choosenOption.toLowerCase())
         .get()
@@ -80,26 +80,20 @@ export default {
         });
     },
     getBed(value) {
-      db.collection("beds")
-        .doc(this.user.id)
-        .get()
-        .then((querySnapshot) => {
-          if (querySnapshot.empty) {
-            console.log("NO BED");
-          } else {
-            this.bed = querySnapshot.data().normalRaisedBed[0];
-            const row = this.bed.plants[value.row];
-            const col = value.col - 1;
-            this.choosenOption = row[col];
-            if (this.choosenOption !== null) {
-              this.searchPlant();
-            }
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$store.dispatch("setError", error);
-        });
+      this.$store.dispatch("getBeds", { bedType: "normalRaisedBeds" });
+      this.bed = this.$store.getters.GET_BED(1);
+      this.position = value;
+
+      const row = this.bed[value.row];
+      const col = value.col - 1;
+      this.choosenOption = row[col];
+
+      if (this.choosenOption.length > 0) {
+        this.searchPlant();
+        this.addNewPlant = false;
+      } else {
+        this.addNewPlant = true;
+      }
     },
     addPlant() {
       this.addNewPlant = true;

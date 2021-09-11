@@ -233,7 +233,7 @@ export default {
 
   .tab-content {
     overflow: auto;
-    height: 800px;
+    height: 68vh;
   }
 }
 </style>

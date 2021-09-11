@@ -10,12 +10,15 @@
     <p>{{ plantInfo.data.nutritionalNeeds }}</p>
     <p>{{ plantInfo.data.seedType }}</p>
   </div>
+  <base-button v-if="plantInfo.id !== 0" @click="savePlant" class="Btn--green">Pflanzen</base-button>
 </template>
 
 <script>
 import { db } from "@/main";
+import BaseButton from "../atoms/BaseButton.vue";
 
 export default {
+  components: { BaseButton },
   props: ["plant"],
   data() {
     return {
@@ -56,8 +59,17 @@ export default {
           this.$store.dispatch("setError", error);
         });
     },
+    savePlant() {
+      this.$emit("savePlant", this.plantInfo.data.name);
+    },
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+.Btn {
+  position: absolute;
+  right: 30px;
+  bottom: 60px;
+}
+</style>
