@@ -5,7 +5,7 @@
     <weather-box></weather-box>
 
     <info-box v-if="plant && !addNewPlant" :plantData="plant"></info-box>
-    <add-plant-box v-if="addNewPlant" :user="user" :position="position"></add-plant-box>
+    <add-plant-box v-if="addNewPlant" :user="user" :position="position" @savedPlant="getBed(position)"></add-plant-box>
     <raised-bed @clicked="getBed"></raised-bed>
     <!-- <img class="background" src="../assets/gartenKumpel/test.jpg" /> -->
   </div>
@@ -99,6 +99,23 @@ export default {
       this.addNewPlant = true;
     },
   },
+  watch: {
+    // highlight active element
+    position: function(newValue, oldValue) {
+      let newBtn = null;
+      const foundNewRow = document.querySelector(`div[id="${newValue.row}"]`);
+      if (foundNewRow) newBtn = foundNewRow.querySelector(`button[id="${newValue.col}"]`);
+
+      let oldBtn = null;
+      const foundOldBtn = document.querySelector(`div[id="${oldValue.row}"]`);
+      if (foundOldBtn) oldBtn = foundOldBtn.querySelector(`button[id="${oldValue.col}"]`);
+
+      if (oldBtn && newBtn) {
+        oldBtn.classList.remove("active");
+        newBtn.classList.add("active");
+      }
+    },
+  },
 };
 </script>
 
@@ -124,6 +141,11 @@ export default {
   .InfoBox {
     margin-top: 30px;
     padding: 30px;
+  }
+
+  button.place.active {
+    border: 1px solid orange;
+    background: rgba(205, 134, 63, 0.507);
   }
 }
 </style>

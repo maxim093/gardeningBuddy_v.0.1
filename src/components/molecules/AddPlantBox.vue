@@ -83,6 +83,8 @@ export default {
       const bed = this.$store.getters.GET_BED(1);
       bed[this.position.row][this.position.col - 1] = value;
 
+      // info for parent component to refetch bed
+      this.$emit("savedPlant");
       this.$store.dispatch("saveBed", { updatedBed: bed, bedType: "normalRaisedBeds", number: 1 });
     },
   },
