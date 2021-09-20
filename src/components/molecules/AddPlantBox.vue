@@ -69,6 +69,9 @@ export default {
         .catch((error) => {
           this.$store.dispatch("setError", error);
         });
+      // TODO: put query on parent and get suggestions based on clicked field
+      console.log(this.$store.getters.GET_PARTNER(1, this.position));
+      this.$store.dispatch("getGoodPartner");
     },
     reset() {
       this.searchedPlant = "";

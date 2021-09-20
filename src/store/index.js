@@ -22,7 +22,7 @@ export default createStore({
     LOGOUT_USER: (state) => {
       state.user = {};
     },
-    // Get all the beds for a given bedtype
+    // GET ALL BEDS FOR BEDTYPE
     GET_BEDS: (state, payload) => {
       const { bedType } = payload;
 
@@ -63,6 +63,21 @@ export default createStore({
           this.$store.dispatch("setError", error);
         });
     },
+    // GET GOOD PLANT PARTNERS FOR CURRENT FIELD
+    GET_GOODPARTNER: (state, payload) => {
+      const { name } = payload;
+      db.collection("plants")
+        .where("goodPartner", "array-contains", name)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.data());
+          });
+        })
+        .catch((error) => {
+          console.log("Error getting documents: ", error);
+        });
+    },
   },
   actions: {
     setError: (context, error) => {
@@ -86,6 +101,9 @@ export default createStore({
     saveBed: (context, payload) => {
       context.commit("SAVE_BED", payload);
     },
+    getGoodPartner: (context, payload) => {
+      context.commit("GET_GOODPARTNER", payload);
+    },
   },
   getters: {
     GET_ERROR: (state) => {
@@ -101,13 +119,108 @@ export default createStore({
         return state.error.message;
       }
     },
-    // get the current user
+    // GET CURRENT USER
     GET_USER: (state) => {
       return state.user;
     },
-    // Get a specific bed for a user
+    // GET BED BY ID
     GET_BED: (state) => (number) => {
       return state.normalRaisedBeds[number];
+    },
+    GET_PARTNER: (state) => (number, position) => {
+      const bedRows = state.normalRaisedBeds[number];
+      const curRow = bedRows[parseInt(position.row)];
+
+      let goodPartner = {};
+      let nextRow = {};
+      let prevRow = {};
+
+      // NO FOLLOWING ROW
+      if (position.row > 3) {
+        nextRow = null;
+      } else {
+        nextRow = bedRows[parseInt(position.row) + 1];
+      }
+
+      // NO PREVIOUS ROW
+      if (position.row < 2) {
+        prevRow = null;
+      } else {
+        prevRow = bedRows[parseInt(position.row) - 1];
+      }
+
+      if (nextRow === null) {
+        goodPartner.atSouthWestElement = null;
+        goodPartner.atWestElement = null;
+        goodPartner.atNorthWestElement = null;
+        goodPartner.atEastElement = prevRow[parseInt(position.col) - 1];
+
+        if (position.col == 1) {
+          goodPartner.atSouthElement = null;
+          goodPartner.atSouthEastElement = null;
+        } else {
+          goodPartner.atSouthElement = curRow[parseInt(position.col) - 2];
+          goodPartner.atSouthEastElement = prevRow[parseInt(position.col) - 2];
+        }
+
+        if (position.col == 6) {
+          goodPartner.atNorthElement = null;
+          goodPartner.atNorthEastElement = null;
+        } else {
+          goodPartner.atNorthElement = curRow[parseInt(position.col)];
+          goodPartner.atNorthEastElement = prevRow[parseInt(position.col)];
+        }
+      } else if (prevRow === null) {
+        goodPartner.atNorthEastElement = null;
+        goodPartner.atEastElement = null;
+        goodPartner.atSouthEastElement = null;
+        goodPartner.atWestElement = nextRow[parseInt(position.col) - 1];
+
+        if (position.col == 1) {
+          goodPartner.atSouthElement = null;
+          goodPartner.atSouthWestElement = null;
+        } else {
+          goodPartner.atSouthElement = curRow[parseInt(position.col) - 2];
+          goodPartner.atSouthWestElement = nextRow[parseInt(position.col) - 2];
+        }
+
+        if (position.col == 6) {
+          goodPartner.atNorthElement = null;
+          goodPartner.atNorthWestElement = null;
+        } else {
+          goodPartner.atNorthElement = curRow[parseInt(position.col)];
+          goodPartner.atNorthWestElement = nextRow[parseInt(position.col)];
+        }
+      } else {
+        if (position.row <= 4 && position.row >= 1) {
+          if (position.col <= 6 && position.col >= 1) {
+            if (position.col == 1) {
+              goodPartner.atSouthEastElement = null;
+              goodPartner.atSouthElement = null;
+              goodPartner.atSouthWestElement = null;
+            } else {
+              goodPartner.atSouthEastElement = prevRow[parseInt(position.col) - 2];
+              goodPartner.atSouthElement = curRow[parseInt(position.col) - 2];
+              goodPartner.atSouthWestElement = nextRow[parseInt(position.col) - 2];
+            }
+
+            if (position.col == 6) {
+              goodPartner.atNorthElement = null;
+              goodPartner.atNorthEastElement = null;
+              goodPartner.atNorthWestElement = null;
+            } else {
+              goodPartner.atNorthElement = curRow[parseInt(position.col)];
+              goodPartner.atNorthEastElement = prevRow[parseInt(position.col)];
+              goodPartner.atNorthWestElement = nextRow[parseInt(position.col)];
+            }
+            goodPartner.atEastElement = prevRow[parseInt(position.col) - 1];
+            goodPartner.atWestElement = nextRow[parseInt(position.col) - 1];
+          }
+        } else {
+          console.error("Error getting Partner");
+        }
+      }
+      return goodPartner;
     },
   },
   plugins: [createPersistedState()],
