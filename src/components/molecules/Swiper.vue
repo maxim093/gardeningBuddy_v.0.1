@@ -61,6 +61,7 @@ export default {
     Swiper,
     SwiperSlide,
   },
+  props: ["recommendedPlants"],
   data() {
     return {};
   },
@@ -68,6 +69,9 @@ export default {
     clicked(value) {
       this.$emit("clicked", value);
     },
+  },
+  mounted() {
+    console.log(this.$store.getters.GET_GOODPARTNER);
   },
 };
 </script>

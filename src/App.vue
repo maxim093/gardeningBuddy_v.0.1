@@ -23,8 +23,8 @@ export default {
   },
   methods: {
     checkUser() {
-      firebase.auth().onAuthStateChanged((user) => {
-        console.log(user);
+      firebase.auth().onAuthStateChanged(() => {
+        // console.log(user);
         // if (
         //   this.$route.path !== "/News" &&
         //   this.$route.path !== "/Register" &&

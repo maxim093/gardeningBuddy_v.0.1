@@ -14,7 +14,6 @@ export default {
     size: {
       type: String,
       default: "small",
-      required: true,
     },
     color: {
       type: String,

@@ -5,7 +5,7 @@
     <!-- SUGGESTIONS -->
     <div v-if="plantInfo.id === 0">
       <h3>Unsere Vorschläge</h3>
-      <swiper-sec @clicked="getClickedOption"></swiper-sec>
+      <swiper-sec @clicked="getClickedOption" :recommendedPlants="recommendedPlants"></swiper-sec>
     </div>
 
     <!-- SEARCH PLANT -->
@@ -33,9 +33,21 @@ import { db } from "@/main";
 export default {
   components: { BaseInputField, Swiper, SwiperSec, BaseButton, InfoBoxSmall },
   props: ["user", "position"],
+  emits: ["savedPlant"],
+  beforeMount() {
+    this.plantPartner = this.$store.getters.['bed/GET_PARTNER'](1, this.position);
+
+    Object.values(this.plantPartner).forEach((value) => {
+      this.$store.dispatch("bed/getGoodPartner", { name: value });
+
+      // this.$store.dispatch("bed/getBadPartner", { name: value });
+    });
+  },
   data() {
     return {
       plant: "",
+      plantPartner: {},
+      recommendedPlants: [],
       searched: false,
       searchedPlant: "",
       plantInfo: {
@@ -67,11 +79,8 @@ export default {
         })
         .then(() => {})
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
-      // TODO: put query on parent and get suggestions based on clicked field
-      console.log(this.$store.getters.GET_PARTNER(1, this.position));
-      this.$store.dispatch("getGoodPartner");
     },
     reset() {
       this.searchedPlant = "";
@@ -82,13 +91,13 @@ export default {
       };
     },
     savePlant(value) {
-      this.$store.dispatch("getBeds", { bedType: "normalRaisedBeds" });
-      const bed = this.$store.getters.GET_BED(1);
+      this.$store.dispatch("bed/getBeds", { bedType: "normalRaisedBeds" });
+      const bed = this.$store.getters.['bed/GET_BED'](1);
       bed[this.position.row][this.position.col - 1] = value;
 
       // info for parent component to refetch bed
       this.$emit("savedPlant");
-      this.$store.dispatch("saveBed", { updatedBed: bed, bedType: "normalRaisedBeds", number: 1 });
+      this.$store.dispatch("bed/saveBed", { updatedBed: bed, bedType: "normalRaisedBeds", number: 1 });
     },
   },
 };

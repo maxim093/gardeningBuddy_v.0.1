@@ -59,7 +59,7 @@ export default {
                     console.error("ERROR");
                   }
 
-                  this.$store.dispatch("loginUser", {
+                  this.$store.dispatch("user/loginUser", {
                     id: user.uid,
                     data: {
                       displayName: value.name,
@@ -70,11 +70,11 @@ export default {
                   });
                 })
                 .catch((error) => {
-                  this.$store.dispatch("setError", error);
+                  this.$store.dispatch("error/setError", error);
                 });
             });
         })
-        .catch((err) => this.$store.dispatch("setError", err));
+        .catch((err) => this.$store.dispatch("error/setError", err));
     },
   },
 };

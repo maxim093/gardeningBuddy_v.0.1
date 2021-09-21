@@ -233,7 +233,7 @@ export default {
           console.log("Document written with ID: ", docRef.id);
         })
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
     // search for specific plant
@@ -254,7 +254,7 @@ export default {
           });
         })
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
     // edit exisisting plant
@@ -269,7 +269,7 @@ export default {
           .doc(this.searchResult.id)
           .update(addDamageIfNotExist)
           .catch((error) => {
-            this.$store.dispatch("setError", error);
+            this.$store.dispatch("error/setError", error);
           });
         return;
       } else {
@@ -280,7 +280,7 @@ export default {
           .doc(this.searchResult.id)
           .update(this.searchResult.data)
           .catch((error) => {
-            this.$store.dispatch("setError", error);
+            this.$store.dispatch("error/setError", error);
           });
       }
     },
@@ -298,7 +298,7 @@ export default {
             this.searchPlant();
           })
           .catch((error) => {
-            this.$store.dispatch("setError", error);
+            this.$store.dispatch("error/setError", error);
           });
       }
     },
@@ -325,7 +325,7 @@ export default {
           this.searchResult.data.damage = removedDamage;
         })
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
   },

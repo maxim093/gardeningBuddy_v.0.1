@@ -20,6 +20,7 @@ import BaseButton from "../atoms/BaseButton.vue";
 export default {
   components: { BaseButton },
   props: ["plant"],
+  emits: ["savePlant"],
   data() {
     return {
       plantInfo: {
@@ -56,7 +57,7 @@ export default {
         })
         .then(() => {})
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
     savePlant() {

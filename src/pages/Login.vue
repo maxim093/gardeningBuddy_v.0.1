@@ -72,7 +72,7 @@ export default {
               .get()
               .then((userProfileSnapshot) => {
                 const { userRole, userName } = userProfileSnapshot.data();
-                this.$store.dispatch("loginUser", {
+                this.$store.dispatch("user/loginUser", {
                   id: user.uid,
                   data: {
                     displayName: user.displayName,
@@ -86,7 +86,7 @@ export default {
           }
         })
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
   },

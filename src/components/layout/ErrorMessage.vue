@@ -17,12 +17,12 @@ export default {
   name: "ErrorMessage",
   computed: {
     getError() {
-      return this.$store.getters.GET_ERROR;
+      return this.$store.getters.['error/GET_ERROR'];
     },
   },
   methods: {
     dismiss() {
-      this.$store.dispatch("removeError");
+      this.$store.dispatch("error/removeError");
     },
   },
 };

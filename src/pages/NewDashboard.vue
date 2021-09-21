@@ -27,7 +27,7 @@ const TL = gsap.timeline();
 
 export default {
   beforeMount() {
-    this.user = this.$store.getters.GET_USER;
+    this.user = this.$store.getters.['user/GET_USER'];
   },
   mounted() {
     this.getBed({ row: "2", col: "4" });
@@ -76,12 +76,12 @@ export default {
         })
         .then(() => {})
         .catch((error) => {
-          this.$store.dispatch("setError", error);
+          this.$store.dispatch("error/setError", error);
         });
     },
     getBed(value) {
-      this.$store.dispatch("getBeds", { bedType: "normalRaisedBeds" });
-      this.bed = this.$store.getters.GET_BED(1);
+      this.$store.dispatch("bed/getBeds", { bedType: "normalRaisedBeds" });
+      this.bed = this.$store.getters.['bed/GET_BED'](1);
       this.position = value;
 
       const row = this.bed[value.row];
