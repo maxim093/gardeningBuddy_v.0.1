@@ -5,7 +5,7 @@
     <!-- SUGGESTIONS -->
     <div v-if="plantInfo.id === 0">
       <h3>Unsere Vorschläge</h3>
-      <swiper-sec @clicked="getClickedOption" :recommendedPlants="recommendedPlants"></swiper-sec>
+      <swiper-sec @clicked="getClickedOption"></swiper-sec>
     </div>
 
     <!-- SEARCH PLANT -->
@@ -34,20 +34,21 @@ export default {
   components: { BaseInputField, Swiper, SwiperSec, BaseButton, InfoBoxSmall },
   props: ["user", "position"],
   emits: ["savedPlant"],
-  beforeMount() {
+  mounted() {
     this.plantPartner = this.$store.getters.['bed/GET_PARTNER'](1, this.position);
+
+
 
     Object.values(this.plantPartner).forEach((value) => {
       this.$store.dispatch("bed/getGoodPartner", { name: value });
-
-      // this.$store.dispatch("bed/getBadPartner", { name: value });
+      this.$store.dispatch("bed/getBadPartner", { name: value });
     });
   },
+
   data() {
     return {
       plant: "",
       plantPartner: {},
-      recommendedPlants: [],
       searched: false,
       searchedPlant: "",
       plantInfo: {

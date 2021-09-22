@@ -27,10 +27,8 @@ const TL = gsap.timeline();
 
 export default {
   beforeMount() {
-    this.user = this.$store.getters.['user/GET_USER'];
-  },
-  mounted() {
-    this.getBed({ row: "2", col: "4" });
+    this.user = this.$store.getters["user/GET_USER"];
+    this.$store.dispatch("bed/getBeds", { bedType: "normalRaisedBeds" });
   },
   components: {
     SideBar,
@@ -80,11 +78,8 @@ export default {
         });
     },
     getBed(value) {
-      this.$store.dispatch("bed/getBeds", { bedType: "normalRaisedBeds" });
-      this.bed = this.$store.getters.['bed/GET_BED'](1);
       this.position = value;
-
-      const row = this.bed[value.row];
+      const row = this.bed[1][value.row];
       const col = value.col - 1;
       this.choosenOption = row[col];
 
@@ -114,6 +109,18 @@ export default {
         oldBtn.classList.remove("active");
         newBtn.classList.add("active");
       }
+    },
+    "$store.state.bed.normalRaisedBeds": {
+      deep: true,
+      handler(newVal) {
+        this.bed = newVal;
+
+        try {
+          this.getBed({ row: "2", col: "1" });
+        } catch (error) {
+          console.log(error);
+        }
+      },
     },
   },
 };

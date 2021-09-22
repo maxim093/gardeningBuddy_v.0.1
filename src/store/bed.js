@@ -3,7 +3,7 @@ import { db } from "../main";
 const bed = {
   namespaced: true,
   state: {
-    goodPartner: {},
+    goodPartner: [],
     badPartner: {},
     normalRaisedBeds: {},
   },
@@ -16,7 +16,9 @@ const bed = {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            state.goodPartner = doc.data();
+            if (!state.goodPartner.find((e) => e.id === doc.id)) {
+              state.goodPartner.push({ id: doc.id, data: doc.data() });
+            }
           });
         })
         .catch((error) => {
@@ -40,7 +42,6 @@ const bed = {
     },
     // GET ALL BEDS FOR BEDTYPE
     GET_BEDS: (state, payload) => {
-      console.log(payload);
       const { bedType } = payload.bed;
       db.collection("beds")
         .doc(payload.user.id)
@@ -96,8 +97,8 @@ const bed = {
   },
   getters: {
     // GET BED BY ID
-    GET_BED: (state) => (number) => {
-      return state.normalRaisedBeds[number];
+    GET_BED: (state) => {
+      return state.normalRaisedBeds;
     },
     GET_GOODPARTNER: (state) => {
       return state.goodPartner;

@@ -8,41 +8,13 @@
     }"
     class="mySwiper"
   >
-    <swiper-slide @click="clicked('Gurke')">
-      <p>Gurke</p>
-      <img src="../../assets/test/gurke.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Tomate')">
-      <p>Tomate</p>
-      <img src="../../assets/test/tomate.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Paprika')">
-      <p>Paprika</p>
-      <img src="../../assets/test/paprika.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Kartoffel')">
-      <p>Kartoffel</p>
-      <img src="../../assets/test/kartoffel.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Erdbeere')">
-      <p>Erdbeere</p>
-      <img src="../../assets/test/erdbeere.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Gurke')">
-      <p>Gurke</p>
-      <img src="../../assets/test/gurke.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Tomate')"
-      ><p>Tomate</p>
-      <img src="../../assets/test/tomate.png" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Blumenkohl')">
-      <p>Blumenkohl</p>
-      <img src="../../assets/test/placeholder.jpg" alt=""
-    /></swiper-slide>
-    <swiper-slide @click="clicked('Zucchini')">
-      <p>Zucchini</p>
-      <img src="../../assets/test/placeholder.jpg" alt=""
+    <swiper-slide
+      v-for="recommendation in recommendations"
+      :key="recommendation.data.name"
+      @click="clicked(recommendation.data.name)"
+    >
+      <p>{{ recommendation.data.name }}</p>
+      <img :src="getImgUrl(recommendation.data.name)" alt=""
     /></swiper-slide>
   </swiper>
 </template>
@@ -61,17 +33,30 @@ export default {
     Swiper,
     SwiperSlide,
   },
-  props: ["recommendedPlants"],
   data() {
-    return {};
+    return {
+      recommendations: [],
+    };
   },
   methods: {
     clicked(value) {
       this.$emit("clicked", value);
     },
+    getImgUrl(img) {
+      try {
+        return require("@/assets/test/" + img + ".png");
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
-  mounted() {
-    console.log(this.$store.getters.GET_GOODPARTNER);
+  watch: {
+    "$store.state.bed.goodPartner": {
+      deep: true,
+      handler(newVal) {
+        this.recommendations = newVal;
+      },
+    },
   },
 };
 </script>
