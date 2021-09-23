@@ -35,16 +35,13 @@ export default {
   props: ["user", "position"],
   emits: ["savedPlant"],
   mounted() {
-    this.plantPartner = this.$store.getters.['bed/GET_PARTNER'](1, this.position);
-
-
+    this.plantPartner = this.$store.getters["bed/GET_PARTNER"](1, this.position);
 
     Object.values(this.plantPartner).forEach((value) => {
       this.$store.dispatch("bed/getGoodPartner", { name: value });
       this.$store.dispatch("bed/getBadPartner", { name: value });
     });
   },
-
   data() {
     return {
       plant: "",
@@ -93,7 +90,7 @@ export default {
     },
     savePlant(value) {
       this.$store.dispatch("bed/getBeds", { bedType: "normalRaisedBeds" });
-      const bed = this.$store.getters.['bed/GET_BED'](1);
+      const bed = this.$store.getters["bed/GET_BED"](1);
       bed[this.position.row][this.position.col - 1] = value;
 
       // info for parent component to refetch bed

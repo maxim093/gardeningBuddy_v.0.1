@@ -21,10 +21,8 @@
 <script>
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
 // import Swiper core and required modules
 import SwiperCore, { Pagination } from "swiper";
-
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
@@ -34,9 +32,12 @@ export default {
     SwiperSlide,
   },
   data() {
-    return {
-      recommendations: [],
-    };
+    return {};
+  },
+  computed: {
+    recommendations() {
+      return this.$store.getters["bed/GET_GOODPARTNER"];
+    },
   },
   methods: {
     clicked(value) {
@@ -54,6 +55,7 @@ export default {
     "$store.state.bed.goodPartner": {
       deep: true,
       handler(newVal) {
+        console.log(newVal);
         this.recommendations = newVal;
       },
     },
