@@ -7,7 +7,7 @@
 import firebase from "firebase";
 import ErrorMessage from "./components/layout/ErrorMessage.vue";
 
-// Import Swiper styles
+// Import  Swiper styles
 import "swiper/swiper.scss";
 import "swiper/components/navigation/navigation.scss";
 import "swiper/components/pagination/pagination.scss";
