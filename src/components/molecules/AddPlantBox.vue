@@ -34,9 +34,9 @@ export default {
   components: { BaseInputField, Swiper, SwiperSec, BaseButton, InfoBoxSmall },
   props: ["user", "position"],
   emits: ["savedPlant"],
-  mounted() {
+  mounted() {},
+  updated() {
     this.plantPartner = this.$store.getters["bed/GET_PARTNER"](1, this.position);
-
     Object.values(this.plantPartner).forEach((value) => {
       this.$store.dispatch("bed/getGoodPartner", { name: value });
       this.$store.dispatch("bed/getBadPartner", { name: value });
@@ -96,6 +96,11 @@ export default {
       // info for parent component to refetch bed
       this.$emit("savedPlant");
       this.$store.dispatch("bed/saveBed", { updatedBed: bed, bedType: "normalRaisedBeds", number: 1 });
+    },
+  },
+  computed: {
+    checkGOODPARTNER() {
+      return this.$store.getters["bed/GET_GOODPARTNER"].length;
     },
   },
 };

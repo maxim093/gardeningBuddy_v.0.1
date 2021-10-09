@@ -1,24 +1,32 @@
 <template>
-  <swiper
-    :grabCursor="true"
-    :slidesPerView="5"
-    :spaceBetween="20"
-    :pagination="{
-      clickable: true,
-    }"
-    class="mySwiper"
-  >
-    <swiper-slide
-      v-for="recommendation in recommendations"
-      :key="recommendation.data.name"
-      @click="clicked(recommendation.data.name)"
+  <div v-if="!noPartner">
+    <swiper
+      :grabCursor="true"
+      :slidesPerView="5"
+      :spaceBetween="20"
+      :pagination="{
+        clickable: true,
+      }"
+      class="mySwiper"
     >
-      <p>{{ recommendation.data.name }}</p>
-      <img :src="getImgUrl(recommendation.data.name)" alt=""
-    /></swiper-slide>
-  </swiper>
+      <swiper-slide
+        v-for="recommendation in recommendations"
+        :key="recommendation.data.name"
+        @click="clicked(recommendation.data.name)"
+      >
+        <p>{{ recommendation.data.name }}</p>
+        <img :src="getImgUrl(recommendation.data.name)" alt=""
+      /></swiper-slide>
+    </swiper>
+  </div>
+
+  <div v-else>
+    <swiper-test></swiper-test>
+  </div>
 </template>
+
 <script>
+import SwiperTest from "./SwiperTest.vue"
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
 // import Swiper core and required modules
@@ -30,9 +38,12 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+    SwiperTest,
   },
   data() {
-    return {};
+    return {
+      noPartner: true,
+    };
   },
   computed: {
     recommendations() {
@@ -55,8 +66,14 @@ export default {
     "$store.state.bed.goodPartner": {
       deep: true,
       handler(newVal) {
-        console.log(newVal);
-        this.recommendations = newVal;
+        console.log(newVal.length);
+        if (newVal.length === 0) {
+          this.noPartner = true;
+        } else {
+          this.noPartner = false;
+          this.recommendations = newVal;
+        }
+        console.log(this.noPartner);
       },
     },
   },

@@ -17,7 +17,7 @@ export default {
   name: "ErrorMessage",
   computed: {
     getError() {
-      return this.$store.getters.['error/GET_ERROR'];
+      return this.$store.getters['error/GET_ERROR'];
     },
   },
   methods: {

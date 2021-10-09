@@ -7,6 +7,12 @@
 import firebase from "firebase";
 import ErrorMessage from "./components/layout/ErrorMessage.vue";
 
+// Import Swiper styles
+import "swiper/swiper.scss";
+import "swiper/components/navigation/navigation.scss";
+import "swiper/components/pagination/pagination.scss";
+import "swiper/components/scrollbar/scrollbar.scss";
+
 export default {
   components: {
     ErrorMessage,
@@ -46,6 +52,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 body {
   margin: 0;
 }

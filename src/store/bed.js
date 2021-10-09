@@ -10,6 +10,7 @@ const bed = {
   mutations: {
     // GET GOOD PLANT PARTNERS FOR CURRENT FIELD
     GET_GOODPARTNER: (state, payload) => {
+      state.goodPartner = [];
       const { name } = payload;
       db.collection("plants")
         .where("goodPartner", "array-contains", name)
@@ -43,13 +44,13 @@ const bed = {
     // GET ALL BEDS FOR BEDTYPE
     GET_BEDS: (state, payload) => {
       const { bedType } = payload.bed;
+      const { user } = payload.user;
       db.collection("beds")
-        .doc(payload.user.id)
+        .doc(user.id)
         .collection(bedType)
         .get()
         .then((querySnapshot) => {
           const currentDocLength = querySnapshot.docs;
-
           if (querySnapshot.empty) {
             console.log("NO BED");
           } else {
@@ -89,6 +90,7 @@ const bed = {
       context.commit("GET_BADPARTNER", payload);
     },
     getBeds: (context, payload) => {
+      console.log(context.rootState.user);
       context.commit("GET_BEDS", { bed: payload, user: context.rootState.user });
     },
     saveBed: (context, payload) => {

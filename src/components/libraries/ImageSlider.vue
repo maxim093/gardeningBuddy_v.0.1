@@ -50,12 +50,6 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from "s
 
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
-
-// Import Swiper styles
-import "swiper/swiper.scss";
-import "swiper/components/navigation/navigation.scss";
-import "swiper/components/pagination/pagination.scss";
-import "swiper/components/scrollbar/scrollbar.scss";
 //import BaseImage from "../atoms/BaseImage.vue";
 import BaseHeadline from "../atoms/BaseHeadline.vue";
 import BaseIcon from "../atoms/BaseIcon.vue";
@@ -83,7 +77,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 .swiper-slide {
   position: relative;
 }
